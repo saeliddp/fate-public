@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		.header {
+			background-color: #f2f2f2;
+			padding-top: 10px;
+			margin: 0px;
+			text-align: center;
+			color: #63aba8;
+			font-family: "verdana";
+		}
+
+		form {
+			background:rgb(218, 228, 228);
+			padding: 20px;
+			border-radius: 5px;
+			margin-top: 30px;
+			display: table;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.question {
+			padding-bottom: 10px;
+		}
+
+		.question{
+			font-family: "verdana";
+		}
+
+		.question label {
+			font-size: 15px;
+		}
+
+		form input{
+  			margin-top: 10px;
+		}
+	</style>
+
+  <title>Search Result Survey</title>
+</head>
+
+<body style="background-color: #f2f2f2">
+
+	<h1 class="header">User Information Questionnaire</h1>
+	<form action="../demographics/" method="GET">
+		<div class="question">
+			<label><b>What is your age?</b></label><br>
+			<input type="radio" value="18-21" name="age"> 18 - 21 years old<br>
+			<input type="radio" value="22-28" name="age"> 22 - 28 years old<br>
+			<input type="radio" value="29-35" name="age"> 29 - 35 years old<br>
+			<input type="radio" value="36-49" name="age"> 36 - 49 years old<br>
+			<input type="radio" value="50-65" name="age"> 50 - 65 years old<br>
+			<input type="radio" value="65+" name="age"> 65+ years old<br>
+			<input type="radio" value="PreferNotToSay" name="age" checked> Prefer not to say<br>
+		</div>
+		<div class="question">
+			<label><b>What gender do you identify as?</b></label><br>
+			<input type="radio" value="male" name="gender"> Male<br>
+			<input type="radio" value="female" name="gender"> Female<br>
+			<input type="radio" value="nonbinary" name="gender"> Non-binary/third gender<br>
+			<input type="radio" value="others" name="gender"> Others<br>
+			<input type="radio" value="PreferNotToSay" name="gender" checked> Prefer not to say<br>
+		</div>
+		<div class="question">
+			<label><b>What is the highest degree or level of education you have completed?</b></label><br>
+			<input type="radio" value="someHighSchool" name="education"> Some High School<br>
+			<input type="radio" value="highSchool" name="education"> High School<br>
+			<input type="radio" value="bachelor" name="education"> Bachelor's Degree<br>
+			<input type="radio" value="master" name="education"> Master's Degree<br>
+			<input type="radio" value="phdOrSimilar" name="education"> Ph.D. or similar<br>
+			<input type="radio" value="tradeSchool" name="education"> Trade School<br>
+			<input type="radio" value="PreferNotToSay" name="education" checked> Prefer not to say<br>
+		</div>
+		<input type="submit" value="submit">
+	</form>
+</body>
+
+</html>
