@@ -26,8 +26,6 @@ alg_to_snippets = {
 
 # whether or not to swap the left and right algorithms on a given turn
 swap = [False, True, True, False, True, True, True, False, False, False, False, False, True, True, False, False, True, False, True, True, False]
-# represents the query_id values corresponding to the order of data in snippet.pickle
-qid_map = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 2, 5, 6, 8, 15, 18, 20]
 
 def get_ip_address(request):
     """ use requestobject to fetch client machine's IP Address """
@@ -41,9 +39,8 @@ def get_ip_address(request):
 def consent(request):
     return render(request, 'version2/consent.html')
     
-def demographics(request):
-    if 'age' in request.GET:
-        global respondent
+def email(request):
+    if 'email' in request.GET:
         ip = get_ip_address(request)
         browser_info = request.user_agent.os.family + " " + request.user_agent.browser.family + " "
         if request.user_agent.is_pc:
@@ -52,15 +49,13 @@ def demographics(request):
             browser_info += "Mobile"
             
         respondent = Respondent(
-            age=request.GET['age'],
-            gender=request.GET['gender'],
-            education=request.GET['education'],
             ip_addr=ip,
+            email=request.GET['email'],
             browser=browser_info)
         respondent.save()
         return redirect('version2-instructions', respondent_id=respondent.id)
     else:
-        return render(request, 'version2/demographics.html')
+        return render(request, 'version2/email.html')
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def instructions(request, respondent_id):
@@ -109,7 +104,7 @@ def redir(request, q_id, respondent_id):
         
         if 'time_elapsed' in request.GET:
             response = Response(respondent=user,
-                                query=Query.objects.filter(query_id=qid_map[id-1])[0],
+                                query=Query.objects.filter(query_id=id)[0],
                                 chosen_alg=Algorithm.objects.filter(name=choice)[0],
                                 unchosen_alg=Algorithm.objects.filter(name=not_choice)[0],
                                 time_elapsed=int(request.GET['time_elapsed']))
@@ -149,17 +144,8 @@ def home(request, q_id, respondent_id):
         }
         return render(request, 'version2/home.html', context)
     else:
-        return redirect('version2-thanks', respondent_id=respondent_id)
+        return redirect('version2-leaderboard', respondent_id=respondent_id)
 
-def thanks(request, respondent_id):
-    context = {
-        'respondent_id': respondent_id
-    }
-    if 'mturk_id' in request.GET:
-        resp = Respondent.objects.filter(id=respondent_id)[0]
-        resp.mturk_id = request.GET['mturk_id']
-        resp.save()
-        return render(request, 'version2/code.html')
-    else:
-        return render(request, 'version2/thanks.html', context)
+def leaderboard(request, respondent_id):
+    return render(request, 'version2/leaderboard.html')
     

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		.header {
+			background-color: #f2f2f2;
+			padding-top: 10px;
+			margin: 0px;
+			text-align: center;
+			color: #63aba8;
+			font-family: "verdana";
+		}
+
+		form {
+			background:rgb(218, 228, 228);
+			padding: 20px;
+			border-radius: 5px;
+			margin-top: 30px;
+			display: table;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.question{
+			font-family: "verdana";
+		}
+
+		.question label {
+			font-size: 15px;
+		}
+
+		form input{
+  			margin-top: 10px;
+		}
+	</style>
+
+  <title>Search Result Survey</title>
+</head>
+
+<body style="background-color: #f2f2f2">
+
+	<h1 class="header">Let's get started!</h1>
+	<form action="../email/" method="GET">
+		<label for="email" class="question">Please enter your <b>email</b> below:</label><br>
+		<input type="text" name="email">
+		<input type="submit" id="submit" value="submit">
+	</form>
+</body>
+
+</html>
