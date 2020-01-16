@@ -83,6 +83,15 @@ def getAlgs(id):
         right_alg = round_two_l
     
     return [left_alg, right_alg]
+    
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def feedback(request, q_id, respondent_id, correct):
+    if correct == 1:
+        context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "CORRECT"}
+    else:
+        context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "INCORRECT"}
+        
+    return render(request, 'version2/feedback.html', context)
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def redir(request, q_id, respondent_id):
@@ -109,15 +118,19 @@ def redir(request, q_id, respondent_id):
                                 unchosen_alg=Algorithm.objects.filter(name=not_choice)[0],
                                 time_elapsed=int(request.GET['time_elapsed']))
             response.save()
+            
+            id += 1
+            user.curr_q = id 
+            user.save()
+            correct = 0
+            if choice == "0g" or choice == "05gfp":
+                correct = 1
+            return redirect('version2-feedback', q_id=id, respondent_id=respondent_id, correct=correct)
         
         id += 1
         user.curr_q = id 
         user.save()
-    
-    context = {
-        'curr_qid': id,
-        'respondent_id': respondent_id
-    }
+
         
     return redirect('version2-home', q_id = id, respondent_id=respondent_id)
 
