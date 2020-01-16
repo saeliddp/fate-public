@@ -29,4 +29,7 @@
 </head>
 <body style="background-color: #f2f2f2">
   <h1 class="header">Thank you for playing!</h1>
+  {% for datum in top_five %}
+	<p>{{datum.1}}: {{datum.0}}</p>
+  {% endfor %}
 </body>

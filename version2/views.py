@@ -159,6 +159,17 @@ def home(request, q_id, respondent_id):
     else:
         return redirect('version2-leaderboard', respondent_id=respondent_id)
 
+def sortFirst(val):
+    return val[0]
+    
 def leaderboard(request, respondent_id):
-    return render(request, 'version2/leaderboard.html')
+    users = Respondent.objects.all()
+    output = []
+    for u in users:
+        output.append((u.score, u.email))
+    output.sort(key=sortFirst)
+    context = {
+        "top_five": output[:min(len(output), 5)]
+    }
+    return render(request, 'version2/leaderboard.html', context)
     
