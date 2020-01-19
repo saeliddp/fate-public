@@ -25,10 +25,11 @@
       display: none;
     }
   </style>
-  <title>Search Result Survey</title>
+  <title>Do you Google?</title>
 </head>
 <body style="background-color: #f2f2f2">
   <h1 class="header">Thank you for playing!</h1>
+  <h2 class="header">You scored {{ score }} points!</h2>
   {% for datum in top_five %}
 	<p>{{datum.1}}: {{datum.0}}</p>
   {% endfor %}

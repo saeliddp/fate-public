@@ -41,6 +41,9 @@ def consent(request):
     
 def email(request):
     if 'email' in request.GET:
+        if len(Respondent.objects.filter(email=request.GET['email'])) > 0:
+            context = {'prompt': "Someone has already used that email to play! Please enter a valid email:"}
+            return render(request, 'version2/email.html', context)
         ip = get_ip_address(request)
         browser_info = request.user_agent.os.family + " " + request.user_agent.browser.family + " "
         if request.user_agent.is_pc:
@@ -55,7 +58,8 @@ def email(request):
         respondent.save()
         return redirect('version2-instructions', respondent_id=respondent.id)
     else:
-        return render(request, 'version2/email.html')
+        context = {'prompt': "Please enter your email below:"}
+        return render(request, 'version2/email.html', context)
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def instructions(request, respondent_id):
@@ -121,10 +125,11 @@ def redir(request, q_id, respondent_id):
             
             id += 1
             user.curr_q = id 
-            user.save()
             correct = 0
             if choice == "0g" or choice == "05gfp":
                 correct = 1
+                user.score = user.score + 10 - int(int(request.GET['time_elapsed']) / 6)
+            user.save()
             return redirect('version2-feedback', q_id=id, respondent_id=respondent_id, correct=correct)
         
         id += 1
@@ -157,18 +162,19 @@ def home(request, q_id, respondent_id):
         }
         return render(request, 'version2/home.html', context)
     else:
-        return redirect('version2-leaderboard', respondent_id=respondent_id)
+        return redirect('version2-leaderboard', score=user.score)
 
 def sortFirst(val):
     return val[0]
     
-def leaderboard(request, respondent_id):
+def leaderboard(request, score):
     users = Respondent.objects.all()
     output = []
     for u in users:
         output.append((u.score, u.email))
-    output.sort(key=sortFirst)
+    output.sort(key=sortFirst, reverse=True)
     context = {
+        "score": score,
         "top_five": output[:min(len(output), 5)]
     }
     return render(request, 'version2/leaderboard.html', context)

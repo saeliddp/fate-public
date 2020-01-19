@@ -10,5 +10,5 @@ urlpatterns = [
     path('home<int:q_id>/<int:respondent_id>/', views.home, name='version2-home'),
     path('feedback<int:q_id>/<int:respondent_id>/<int:correct>/', views.feedback, name='version2-feedback'),
     path('redir<int:q_id>/<int:respondent_id>/', views.redir, name='version2-redir'),
-    path('leaderboard<int:respondent_id>/', views.leaderboard, name='version2-leaderboard'),
+    path('leaderboard<int:score>/', views.leaderboard, name='version2-leaderboard'),
 ]

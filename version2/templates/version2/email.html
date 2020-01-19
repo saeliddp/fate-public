@@ -20,6 +20,7 @@
 			display: table;
 			margin-left: auto;
 			margin-right: auto;
+			float: center;
 		}
 
 		.question{
@@ -42,7 +43,7 @@
 
 	<h1 class="header">Let's get started!</h1>
 	<form action="../email/" method="GET">
-		<label for="email" class="question">Please enter your <b>email</b> below:</label><br>
+		<label for="email" class="question">{{ prompt }}</label><br>
 		<input type="text" name="email">
 		<input type="submit" id="submit" value="submit">
 	</form>
