@@ -25,7 +25,7 @@ SECRET_KEY = '1xlxrvc)_w0hd!qv3^ip)ax#yn4@4g6o@dtp+y6=rao%^f6^tl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['shielded-tundra-32718.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['shielded-tundra-32718.herokuapp.com','localhost', '127.0.0.1']
 
 
 # Application definition

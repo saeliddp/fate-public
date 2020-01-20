@@ -1,15 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head></head>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Kalam&display=swap');
+        .feedback {
+            padding-top: 300px;
+            text-align: center;
+            font-family: 'Kalam', cursive;
+        }
+
+        #icon {
+            height: 50px;
+            length: 50px;
+        }
+
+        .icon-credit {
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            font-family: 'Kalam', cursive;
+        }
+    </style>
+
+</head>
 <body>
-<h1>{{ feedback }}</h1>
+<div class="feedback">
+    <img id="icon">
+    <h1 id="text">{{ feedback }}</h1>
+</div>
+<div class="icon-credit">
+    Icons made by <a href="https://www.flaticon.com/authors/pixelmeetup" title="Pixelmeetup">Pixelmeetup</a> and <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+</div>
 </body>
-  <form action="../../../home{{ q_id }}/{{ respondent_id }}/" id="main_form" method="get">
-  </form>
+    <form action="../../../home{{ q_id }}/{{ respondent_id }}/" id="main_form" method="get">
+    </form>
 <script>
 function s() {
 	document.getElementById("main_form").submit();
 }
+
+{% load staticfiles %}
+let feedback = document.getElementById("text").innerText
+console.log(feedback)
+if (feedback === "CORRECT") {
+    document.getElementById("icon").src = "{% static 'myapp/correct.svg' %}"
+    document.getElementById("text").innerText = "CORRECT +10"
+} else {
+    document.getElementById("icon").src = "{% static 'myapp/wrong.svg' %}"
+}
+
 setTimeout(s, 750);
 </script>
 </html>
