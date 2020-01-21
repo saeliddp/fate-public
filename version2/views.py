@@ -128,7 +128,7 @@ def redir(request, q_id, respondent_id):
             correct = 0
             if choice == "0g" or choice == "05gfp":
                 correct = 1
-                user.score = user.score + 10 - int(int(request.GET['time_elapsed']) / 6)
+                user.score = user.score + 10 #- int(int(request.GET['time_elapsed']) / 6)
             user.save()
             return redirect('version2-feedback', q_id=id, respondent_id=respondent_id, correct=correct)
         
