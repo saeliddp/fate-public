@@ -40,6 +40,7 @@ def consent(request):
     return render(request, 'version2/consent.html')
     
 def email(request):
+    """
     if 'email' in request.GET:
         if len(Respondent.objects.filter(email=request.GET['email'])) > 0:
             context = {'prompt': "Someone has already used that email to play! Please enter a valid email:"}
@@ -60,6 +61,20 @@ def email(request):
     else:
         context = {'prompt': "Please enter your email below:"}
         return render(request, 'version2/email.html', context)
+    """
+    ip = get_ip_address(request)
+    browser_info = request.user_agent.os.family + " " + request.user_agent.browser.family + " "
+    if request.user_agent.is_pc:
+            browser_info += "PC"
+    else:
+        browser_info += "Mobile"
+            
+    respondent = Respondent(
+        ip_addr=ip,
+        browser=browser_info)
+    respondent.save()
+    return redirect('version2-instructions', respondent_id=respondent.id)
+
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def instructions(request, respondent_id):
@@ -169,13 +184,14 @@ def sortFirst(val):
     
 def leaderboard(request, score):
     users = Respondent.objects.all()
-    output = []
+    output = {}
     for u in users:
-        output.append((u.score, u.email))
-    output.sort(key=sortFirst, reverse=True)
+        if u.score not in output:
+            output[u.score] = 0
+        output[u.score] += 1
+
     context = {
-        "score": score,
-        "top_five": output[:min(len(output), 5)]
+        "score_dict": output
     }
     return render(request, 'version2/leaderboard.html', context)
     
