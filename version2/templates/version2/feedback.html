@@ -47,6 +47,7 @@ if (feedback === "CORRECT") {
     document.getElementById("text").innerText = "CORRECT +10"
 } else {
     document.getElementById("icon").src = "{% static 'myapp/wrong.svg' %}"
+    document.getElementById("text").innerText = "INCORRECT -5"
 }
 
 setTimeout(s, 750);

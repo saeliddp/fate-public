@@ -17,11 +17,15 @@
       font-family: "verdana";
     }
 
+    .share {
+        color: white;
+        font-family: "verdana";
+      }
 
     .board-title {
         text-align: center;
-        padding-top: 30px;
         font-family: "verdana";
+        padding-top: 50px;
     }
 
     .mturk-id {
@@ -40,7 +44,7 @@
     }
 
     #container {
-      width: 600px;
+      width: 400px;
       height: auto;
         margin-left: auto;
         margin-right: auto;
@@ -59,22 +63,14 @@
       border-bottom: 1px solid #AFAFAF;
     }
 
-    .name {
+    .score {
         font-size: 20px;
         padding-top: 5px;
       position: relative;
       display: inline-block;
-      width: 60%;
+      width: 100%;
       line-height: 45px;
-        padding-left: 15px;
-        font-family: 'Kalam', cursive;
-    }
-
-    .score {
-        font-size: 20px;
-      position: relative;
-      display: inline-block;
-      width: 25%;
+        text-align: center;
         font-family: 'Kalam', cursive;
     }
 
@@ -101,24 +97,62 @@
       .row:nth-child(6) {
         background: rgba(255, 255, 255, 0.4);
     }
+
+      .share-block {
+          position: absolute;
+          right: 20px;
+      }
+
+      ul.share-buttons{
+          list-style: none;
+          padding: 0;
+        }
+
+        ul.share-buttons li{
+          display: inline;
+        }
+
+        ul.share-buttons .sr-only{
+          position: absolute;
+          clip: rect(1px 1px 1px 1px);
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 0;
+          border: 0;
+          height: 1px;
+          width: 1px;
+          overflow: hidden;
+        }
   </style>
 
   <title>Do you Google?</title>
 </head>
 <body style="background-color: #f2f2f2">
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
 
   <h1 class="header header1">Thank you for playing!</h1>
   <h2 class="header">You scored {{ score }} points!</h2>
+    <div class="share-block">
+        <p class="share">Share with you friends!</p>
+        <ul class="share-buttons">
+          <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F&quote=" title="Share on Facebook" target="_blank"><img alt="Share on Facebook" src="{% static 'myapp/Facebook.png' %}" /></a></li>
+          <li><a href="https://twitter.com/intent/tweet?source=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F&text=:%20https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F" target="_blank" title="Tweet"><img alt="Tweet" src="{% static 'myapp/Twitter.png' %}" /></a></li>
+          <li><a href="https://plus.google.com/share?url=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F" target="_blank" title="Share on Google+"><img alt="Share on Google+" src="{% static 'myapp/Google+.png' %}" /></a></li>
+            <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F&title=&summary=&source=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F" target="_blank" title="Share on LinkedIn"><img alt="Share on LinkedIn" src="{% static 'myapp/LinkedIn.png' %}" /></a></li>
+        </ul>
+    </div>
+
+
   <h3 class="board-title">Leaderboard TOP 5!</h3>
 
   <div id="container">
       {% load staticfiles %}
         <div class="row">
-            <div class="name">Email</div><div class="score">Score</div>
+            <div class="score">Score</div>
          </div>
       {% for datum in top_five %}
           <div class="row">
-            <div class="name">{{datum.1}}</div><div class="score">{{datum.0}}</div>
+            <div class="score">{{datum.0}}</div>
          </div>
       {% endfor %}
 
