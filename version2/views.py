@@ -107,9 +107,10 @@ def getAlgs(id):
 def feedback(request, q_id, respondent_id, correct):
     if correct == 1:
         context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "CORRECT"}
-    else:
+    elif correct == 0:
         context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "INCORRECT"}
-        
+    else:
+        return redirect("version2-home", q_id=q_id, respondent_id=respondent_id)
     return render(request, 'version2/feedback.html', context)
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
@@ -144,6 +145,10 @@ def redir(request, q_id, respondent_id):
             if choice == "0g" or choice == "05gfp":
                 correct = 1
                 user.score = user.score + 10 #- int(int(request.GET['time_elapsed']) / 6)
+            elif choice == "03gfp" or choice == "09gfp":
+                user.score = user.score - 5
+            else:
+                correct = 2
             user.save()
             return redirect('version2-feedback', q_id=id, respondent_id=respondent_id, correct=correct)
         
@@ -189,9 +194,11 @@ def leaderboard(request, score):
         if u.score not in output:
             output[u.score] = 0
         output[u.score] += 1
-
+    a_output = []
+    for key in output:
+        a_output.append((key, output[key]))
     context = {
-        "score_dict": output
+        "score_dict": a_output
     }
     return render(request, 'version2/leaderboard.html', context)
     
