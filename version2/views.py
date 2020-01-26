@@ -146,7 +146,7 @@ def redir(request, q_id, respondent_id):
                 correct = 1
                 user.score = user.score + 10 #- int(int(request.GET['time_elapsed']) / 6)
             elif choice == "03gfp" or choice == "09gfp":
-                user.score = user.score - 5
+                user.score = max(0, user.score - 5)
             else:
                 correct = 2
             user.save()
@@ -198,7 +198,8 @@ def leaderboard(request, score):
     for key in output:
         a_output.append((key, output[key]))
     context = {
-        "score_dict": a_output
+        "score_dict": a_output,
+        "score": score
     }
     return render(request, 'version2/leaderboard.html', context)
     
