@@ -122,6 +122,12 @@
           width: 1px;
           overflow: hidden;
         }
+
+      .chart {
+          width: 300px;
+          margin-top: -300px;
+          position: absolute;
+      }
   </style>
 
   <title>Do you Google?</title>
@@ -129,6 +135,7 @@
 <body style="background-color: #f2f2f2">
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
 
   <h1 class="header header1">Thank you for playing!</h1>
   <h2 class="header">You scored {{ score }} points!</h2>
@@ -150,12 +157,77 @@
         <div class="row">
             <div class="score">Score</div>
          </div>
+
       {% for datum in score_dict %}
+          {% if forloop.counter < 6 %}
           <div class="row">
             <div class="score">{{datum.0}}</div>
          </div>
+          {% endif %}
       {% endfor %}
 
+
   </div>
+
+
+<div class="chart">
+    <canvas id="myChart" width="200" height="200"></canvas>
+</div>
+
+
+<script>
+
+    var newlist = []
+    {% for datum in score_dict %}
+        var xv = {{ datum.0 }}
+        var yv = {{ datum.1 }}
+        var point = {x: xv, y: yv}
+        newlist.push(point)
+    {% endfor %}
+
+    console.log(newlist)
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+        datasets: [{
+            label: 'Score Distribution',
+            data: newlist,
+            pointBackgroundColor: 'rgba(255, 206, 86, 1)',
+            borderColor: 'rgba(255, 206, 86, 1)'
+        }]
+    },
+    options: {
+        legend: {
+            labels: {
+                fontColor: 'rgba(255, 255, 255)'
+            }
+        },
+
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    color: 'rgba(255, 255, 255, 0.3)'
+                },
+                ticks: {
+                    fontColor: "#fff"
+                }
+            }],
+            yAxes: [{
+                gridLines: {
+                    color: 'rgba(255, 255, 255, 0.3)'
+                },
+                ticks: {
+                    fontColor: "#fff"
+                }
+            }]
+        }
+
+    }
+})
+
+</script>
 
 </body>
