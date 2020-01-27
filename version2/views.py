@@ -197,6 +197,8 @@ def leaderboard(request, score):
     a_output = []
     for key in output:
         a_output.append((key, output[key]))
+    
+    a_output.sort(reverse=True)
     context = {
         "score_dict": a_output,
         "score": score
