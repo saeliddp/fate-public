@@ -4,7 +4,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Kalam&display=swap');
         .feedback {
-            padding-top: 300px;
+            padding-top: 200px;
             text-align: center;
             font-family: 'Kalam', cursive;
         }
@@ -27,6 +27,7 @@
 <div class="feedback">
     <img id="icon">
     <h1 id="text">{{ feedback }}</h1>
+    <h1 id="score"></h1>
 </div>
 <div class="icon-credit">
     Icons made by <a href="https://www.flaticon.com/authors/pixelmeetup" title="Pixelmeetup">Pixelmeetup</a> and <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -45,9 +46,15 @@ console.log(feedback)
 if (feedback === "CORRECT") {
     document.getElementById("icon").src = "{% static 'myapp/correct.svg' %}"
     document.getElementById("text").innerText = "CORRECT +10"
-} else {
+    document.getElementById("score").innerText = "CURRENT SCORE: " + {{ current_score }}
+} else if (feedback === "INCORRECT") {
     document.getElementById("icon").src = "{% static 'myapp/wrong.svg' %}"
     document.getElementById("text").innerText = "INCORRECT -5"
+    document.getElementById("score").innerText = "CURRENT SCORE: " + {{ current_score }}
+} else {
+    document.getElementById("icon").src = "{% static 'myapp/right-arrow.svg' %}"
+    document.getElementById("text").innerText = "SKIPPED +0"
+    document.getElementById("score").innerText = "CURRENT SCORE: " + {{ current_score }}
 }
 
 setTimeout(s, 750);
