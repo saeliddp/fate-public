@@ -104,13 +104,14 @@ def getAlgs(id):
     return [left_alg, right_alg]
     
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
-def feedback(request, q_id, respondent_id, correct):
+def feedback(request, q_id, respondent_id, correct, current_score):
     if correct == 1:
-        context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "CORRECT"}
+        context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "CORRECT", "current_score": current_score}
     elif correct == 0:
-        context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "INCORRECT"}
+        context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "INCORRECT", "current_score": current_score}
     else:
-        return redirect("version2-home", q_id=q_id, respondent_id=respondent_id)
+        context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "SKIPPED", "current_score": current_score}
+
     return render(request, 'version2/feedback.html', context)
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
@@ -150,7 +151,7 @@ def redir(request, q_id, respondent_id):
             else:
                 correct = 2
             user.save()
-            return redirect('version2-feedback', q_id=id, respondent_id=respondent_id, correct=correct)
+            return redirect('version2-feedback', q_id=id, respondent_id=respondent_id, correct=correct, current_score=user.score)
         
         id += 1
         user.curr_q = id 
