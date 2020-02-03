@@ -173,13 +173,21 @@ def home(request, q_id, respondent_id):
     left_alg = getAlgs(q_id)[0]
     right_alg = getAlgs(q_id)[1]
     request.session.flush()
+    font_size_title = "14px"
+    font_size_body = "12px"
+    if "Mobile" in user.browser:
+        font_size_title = "20px"
+        font_size_body = "18px"
+
     if q_id <= 20:
         context = {
             'left_snippets': alg_to_snippets[left_alg][q_id],
             'right_snippets': alg_to_snippets[right_alg][q_id],
             'query_name': alg_to_snippets[right_alg][q_id][0][0],
             'curr_qid': q_id + 1,
-            'respondent_id': respondent_id
+            'respondent_id': respondent_id,
+            'font_size_title': font_size_title,
+            'font_size_body': font_size_body
         }
         return render(request, 'version2/home.html', context)
     else:
