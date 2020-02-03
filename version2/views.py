@@ -181,7 +181,7 @@ def home(request, q_id, respondent_id):
         font_size_title = "20px"
         font_size_body = "18px"
         title_height = "22px"
-        body_height = "30px"
+        body_height = "32px"
     if q_id <= 20:
         context = {
             'left_snippets': alg_to_snippets[left_alg][q_id],
