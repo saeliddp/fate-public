@@ -175,10 +175,13 @@ def home(request, q_id, respondent_id):
     request.session.flush()
     font_size_title = "14px"
     font_size_body = "12px"
+    title_height = "16px"
+    body_height = "20px"
     if "Mobile" in user.browser:
         font_size_title = "20px"
         font_size_body = "18px"
-
+        title_height = "22px"
+        body_height = "26px"
     if q_id <= 20:
         context = {
             'left_snippets': alg_to_snippets[left_alg][q_id],
