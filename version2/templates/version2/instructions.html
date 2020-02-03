@@ -20,6 +20,15 @@ p {
 	margin-right: 100px;
 	margin-bottom: 10px;
 }
+.description {
+	font-family: "verdana";
+	color: #565656;
+	font-size: 14px;
+	margin-top: 50px;
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-bottom: 50px;
+}
 div {
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -61,22 +70,29 @@ img {
   <title>Google or Not?</title>
 </head>
 <body style="background-color: #f2f2f2">
-<h1 class="header">How to Play</h1>
+<h1 class="header">Google or Not?</h1>
+<h1 class="header">Test How Well You Know Google!</h1>
+<h3 class="header" style="float: left;	margin-left: 105px;">How to Play:</h3>
+<h3> </h3>
 <div>
-  <p>1. You will have 30 seconds to choose between the two sets of results </p>
-  <p>2. Select the set of results that came directly from Google </p>
-  <p>3. Press submit </p>
-  <p>4. If you choose correctly, you will score 10 points; if you choose the wrong option, you will lose 5 points</p>
-  <p>5. If you make no selection after 30 seconds, you will score 0 points
-  <p>6. You will then be directed to the next pair of results for a new search term</p>
-  <p>7. There will be 20 rounds. Good luck! </p>
+  <p>1. You will be shown two sets of results for each search term. You will have 30 seconds to guess which side is from Google. </p>
+  <p>2. If you get it right, you will earn 10 points. For being wrong, you lose 5 points</p>
+  <p>3. If you make no selection after 30 seconds, you will earn 0 points
+  <p>4. You will then be directed to the next pair of results for a new search term</p>
+  <p>5. There will be 20 rounds. Good luck! </p>
   <p>Here is what the game will look like:</p>
 </div>
 {% load staticfiles %}
 <img src="{% static 'myapp/demo2.jpg' %}" alt="demo">
+<h3 class="header" style="float: left;	margin-left: 105px;">The Legal Stuff:</h3>
+<h3> </h3>
+<div>
+<p>This game has been explained to me. I have had a chance to ask questions. If I have questions later about this game, or if I have been harmed by participating in it, I can contact Dr. Chirag Shah (chirags@uw.edu). If I have questions about my rights as a participant, I can call the Human Subjects Division at (206) 543-0098 or call collect at (206) 221-5940. I acknowledge that I am not affiliated with University of Washington (UW), a family member of a UW employee, or UW student involved in this particular game.
+</p>
+</div>
 <div style="text-align: center">
 	<form action="../redir1/{{ respondent_id }}/" id="to_home">
-	<input type="submit" value="Begin" class="button">
+	<input type="submit" value="Agree and Begin" class="button">
 </div>
 </form>
 </body>

@@ -35,33 +35,10 @@ def get_ip_address(request):
     else:
         ip = request.META.get('REMOTE_ADDR', None)
     return ip
-    
-def consent(request):
-    return render(request, 'version2/consent.html')
-    
-def email(request):
-    """
-    if 'email' in request.GET:
-        if len(Respondent.objects.filter(email=request.GET['email'])) > 0:
-            context = {'prompt': "Someone has already used that email to play! Please enter a valid email:"}
-            return render(request, 'version2/email.html', context)
-        ip = get_ip_address(request)
-        browser_info = request.user_agent.os.family + " " + request.user_agent.browser.family + " "
-        if request.user_agent.is_pc:
-            browser_info += "PC"
-        else:
-            browser_info += "Mobile"
-            
-        respondent = Respondent(
-            ip_addr=ip,
-            email=request.GET['email'],
-            browser=browser_info)
-        respondent.save()
-        return redirect('version2-instructions', respondent_id=respondent.id)
-    else:
-        context = {'prompt': "Please enter your email below:"}
-        return render(request, 'version2/email.html', context)
-    """
+
+
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def instructions(request):
     ip = get_ip_address(request)
     browser_info = request.user_agent.os.family + " " + request.user_agent.browser.family + " "
     if request.user_agent.is_pc:
@@ -69,21 +46,15 @@ def email(request):
     else:
         browser_info += "Mobile"
             
-    respondent = Respondent(
+    user = Respondent(
         ip_addr=ip,
         browser=browser_info)
-    respondent.save()
-    return redirect('version2-instructions', respondent_id=respondent.id)
-
-
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
-def instructions(request, respondent_id):
-    user = Respondent.objects.filter(id=respondent_id)[0]
+    user.save()
     if user.curr_q != 0:
         return redirect('version2-redir', q_id=1, respondent_id=respondent_id)
     else:
         context = {
-            'respondent_id': respondent_id
+            'respondent_id': user.id
         }
         return render(request, 'version2/instructions.html', context)
 
