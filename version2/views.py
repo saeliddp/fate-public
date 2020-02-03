@@ -190,7 +190,9 @@ def home(request, q_id, respondent_id):
             'curr_qid': q_id + 1,
             'respondent_id': respondent_id,
             'font_size_title': font_size_title,
-            'font_size_body': font_size_body
+            'font_size_body': font_size_body,
+            'body_height': body_height,
+            'title_height': title_height
         }
         return render(request, 'version2/home.html', context)
     else:
