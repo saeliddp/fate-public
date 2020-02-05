@@ -151,6 +151,16 @@
     .form-radio:checked {
       background-color: #63aba8;
     }
+	#myProgress {
+	  width: 100%;
+	  background-color: grey;
+	}
+
+	#myBar {
+	  width: 0%;
+	  height: 30px;
+	  background-color: green;
+	}
   </style>
 
   <title>Google or Not?</title>
@@ -165,7 +175,10 @@
     <p class="query" id="qstring">Search: {{ query_name }}</p>
 	
   </div>
-
+  <div id="myProgress">
+    <div id="myBar"></div>
+  </div>
+ 
   <!-- Sets up the two sets of search results -->
   <div class="row main_divs">
     <div class="column columnl" style="background-color: white">
@@ -200,7 +213,6 @@
       <input type="radio" name="radio" value="right" id="radio-right" class="form-radio" disabled>
     </div>
   </div>
-  <p id="timer" class="timer"></p>
 
   <!-- Sets up the submit button -->
   <div class="main_divs">
@@ -216,6 +228,7 @@
 </body>
 <script>
 secondsRemaining = 30
+
 function updateSeconds() {
 	// time is up
 	elapsed = 30 - secondsRemaining;
@@ -228,7 +241,7 @@ function updateSeconds() {
 	if (secondsRemaining < 1) {
 		document.getElementById("main_form").submit();
 	} else {
-		document.getElementById("timer").innerHTML = secondsRemaining;
+	    document.getElementById("myBar").style.width = (secondsRemaining / 30.0) * 100 + "%";
 		secondsRemaining--;
 	}
 }
@@ -240,9 +253,8 @@ for(var i = 0, max = radios.length; i < max; i++) {
         document.getElementById("submit_button").disabled = false;
     }
 }
-
+document.getElementById("remaining").innerHTML = "Question " + (21 - rem).toString() + "/20";
 updateSeconds();
 setInterval(updateSeconds, 1000);
-document.getElementById("remaining").innerHTML = "Question " + (21 - rem).toString() + "/20";
 </script>
 </html>
