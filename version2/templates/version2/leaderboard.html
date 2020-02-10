@@ -178,11 +178,21 @@
 <script>
 
     var newlist = []
+    var current_score = []
     {% for datum in score_dict %}
+        {% if datum.0 != score %}
         var xv = {{ datum.0 }}
         var yv = {{ datum.1 }}
         var point = {x: xv, y: yv}
         newlist.push(point)
+        {% endif %}
+
+        {% if datum.0 == score %}
+        var xv2 = {{ datum.0 }}
+        var yv2 = {{ datum.1 }}
+        var point2 = {x: xv2, y: yv2}
+        current_score.push(point2)
+        {% endif %}
     {% endfor %}
 
     console.log(newlist)
@@ -197,6 +207,12 @@ var myChart = new Chart(ctx, {
             data: newlist,
             pointBackgroundColor: 'rgba(255, 206, 86, 1)',
             borderColor: 'rgba(255, 206, 86, 1)'
+        },
+        {
+            label: 'Your Position',
+            data: current_score,
+            pointBackgroundColor: 'rgb(56,255,106)',
+            borderColor: 'rgb(56,255,106)'
         }]
     },
     options: {
@@ -213,6 +229,11 @@ var myChart = new Chart(ctx, {
                 },
                 ticks: {
                     fontColor: "#fff"
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'score',
+                    fontColor: "#fff"
                 }
             }],
             yAxes: [{
@@ -220,6 +241,11 @@ var myChart = new Chart(ctx, {
                     color: 'rgba(255, 255, 255, 0.3)'
                 },
                 ticks: {
+                    fontColor: "#fff"
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'frequency',
                     fontColor: "#fff"
                 }
             }]
