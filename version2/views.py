@@ -189,14 +189,25 @@ def leaderboard(request, score):
         min_topscore.username = request.GET['username']
         min_topscore.save()
         
-    output = []
+    t5_output = []
     topscores = TopScore.objects.all()
     for ts in topscores:
-        output.append((ts.score, ts.username))
-
-    output.sort(reverse=True)
+        t5_output.append((ts.score, ts.username))
+    
+    sdict = {}
+    for u in Respondent.objects.all():
+        if u.score not in sdict:
+            sdict[u.score] = 0
+        sdict[u.score] += 1
+    freq_output = []
+    for key in sdict:
+        freq_output.append((key, sdict[key])) 
+        
+    freq_output.sort(reverse=True)  # remove if unnecessary   
+    t5_output.sort(reverse=True)
     context = {
-        "score_dict": output,
+        "top_five": t5_output,
+        "score_dict": freq_output,
         "score": score
     }
     return render(request, 'version2/leaderboard.html', context)
