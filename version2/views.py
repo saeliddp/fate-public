@@ -173,19 +173,30 @@ def sortFirst(val):
     return val[0]
     
 def leaderboard(request, score):
-    users = Respondent.objects.all()
-    output = {}
-    for u in users:
-        if u.score not in output:
-            output[u.score] = 0
-        output[u.score] += 1
-    a_output = []
-    for key in output:
-        a_output.append((key, output[key]))
+    topscores = TopScore.objects.all()
+    min_topscore_val = 20000 # larger than the highest possible score
+    min_topscore = None
+    for ts in topscores:
+        if ts.score < min_topscore_val:
+            min_topscore_val = ts.score
+            min_topscore = ts
     
-    a_output.sort(reverse=True)
+    if score >= min_topscore_val and 'username' not in request.GET:
+        context = {'score': score}
+        return render(request, 'version2/username.html', context)
+    elif 'username' in request.GET:
+        min_topscore.score = score
+        min_topscore.username = request.GET['username']
+        min_topscore.save()
+        
+    output = []
+    topscores = TopScore.objects.all()
+    for ts in topscores:
+        output.append((ts.score, ts.username))
+
+    output.sort(reverse=True)
     context = {
-        "score_dict": a_output,
+        "score_dict": output,
         "score": score
     }
     return render(request, 'version2/leaderboard.html', context)

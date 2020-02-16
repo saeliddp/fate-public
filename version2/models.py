@@ -27,6 +27,10 @@ class Query(models.Model):
     def __str__(self):
         return self.query_name
     
+class TopScore(models.Model):
+    score = models.PositiveIntegerField(default=0)
+    username = models.CharField(max_length=70, default="anonymous")
+    
 class Response(models.Model):
     respondent = models.ForeignKey(Respondent, on_delete=models.CASCADE)
     query = models.ForeignKey(Query, on_delete=models.CASCADE)
