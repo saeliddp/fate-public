@@ -6,14 +6,31 @@
 
         .text {
             padding-top: 200px;
-            font-size: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 40px;
             text-align: center;
             font-family: 'Kalam', cursive;
         }
 
-        form {
-            width: 20%;
-            margin-left: 45%;
+        input {
+            width: 200px;
+            height: 50px;
+            font-size: 30px;
+            margin-left: 40%;
+        }
+
+        @media (min-width: 1000px) {
+            .text {
+                font-size: 20px;
+            }
+
+            input {
+                width: 20%;
+                height: 10%;
+                margin-left: 40%;
+                font-size: 20px;
+            }
         }
     </style>
 
@@ -23,9 +40,12 @@
     <p>Congratulations! You've reached the leader board TOP 5!</p>
     <p>Enter your username and it will be displayed on the leader board next page.</p>
 </div>
-<form action="../leaderboard{{ score }}/" id="main_form" method="get">
-    <input type="text" name="username">
-    <input type="submit" value="Submit">
-</form>
+<div class="submit">
+    <form action="../leaderboard{{ score }}/" id="main_form" method="get">
+        <input type="text" name="username">
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
 </body>
 </html>
