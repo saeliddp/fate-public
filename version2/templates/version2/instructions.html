@@ -1,98 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.header {
-  background-color: #f2f2f2;
-  padding-top: 10px;
-  margin: 0px;
-  text-align: center;
-  color: #63aba8;
-  font-family: "verdana";
-}
-p {
-	font-family: "verdana";
-	color: #565656;
-	text-align: center;
-	font-size: 14px;
-	margin-top: 10px;
-	margin-left: 100px;
-	margin-right: 100px;
-	margin-bottom: 10px;
-}
-.description {
-	font-family: "verdana";
-	color: #565656;
-	font-size: 14px;
-	margin-top: 50px;
-	margin-left: 100px;
-	margin-right: 100px;
-	margin-bottom: 50px;
-}
-div {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 5px;
-} 
-a {
-	text-align: center;
-	font-family: "verdana";
-}
-.button {
-    background-color: #63aba8;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-.button:hover {
-    background-color: #4d8583;
-}
-p {
-  text-align: left;
-}
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-  padding: 1px;
-  border: 1px solid #021a40;
-  background-color:red;
-}
-</style>
-  <title>Google or Not?</title>
+    <style>
+        .header {
+            background-color: #f2f2f2;
+            padding-top: 10px;
+            margin: 0px;
+            text-align: center;
+            color: #63aba8;
+            font-family: "verdana";
+        }
+
+        p {
+            font-family: "verdana";
+            color: #565656;
+            text-align: left;
+            font-size: 14px;
+            margin-top: 10px;
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-bottom: 10px;
+        }
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 5px;
+        }
+
+        a {
+            text-align: center;
+            font-family: "verdana";
+        }
+
+        .button {
+            background-color: #63aba8;
+            border: none;
+            color: white;
+            padding: 25px 40px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 30px;
+            margin: 4px 2px 60px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .button:hover {
+            background-color: #4d8583;
+        }
+
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            padding: 1px;
+            border: 1px solid #021a40;
+            background-color: red;
+        }
+
+        .rules p {
+            padding-top: 5px;
+            font-size: 12px;
+        }
+
+        .rules h2 {
+            font-size: 12px;
+            color: #63aba8;
+            font-family: "verdana";
+            padding-left: 30px;
+        }
+
+        @media (min-width: 1000px) {
+            .rules p {
+                font-size: 15px;
+            }
+
+            .rules h2 {
+                font-size: 20px;
+                padding-left: 100px;
+            }
+
+            .button {
+            padding: 15px 30px;
+            font-size: 18px;
+            }
+        }
+    </style>
+    <title>Google or Not?</title>
 </head>
 <body style="background-color: #f2f2f2">
 <h1 class="header">Google or Not?</h1>
 <h1 class="header">Test How Well You Know Google!</h1>
-<h3 class="header" style="float: left;	margin-left: 105px;">How to Play:</h3>
-<h3> </h3>
-<div>
-  <p>1. You will be shown two sets of results for each search term. You will have 30 seconds to guess which side is from Google. </p>
-  <p>2. If you get it right, you will earn 10 points. For being wrong, you lose 5 points</p>
-  <p>3. If you make no selection after 30 seconds, you will earn 0 points
-  <p>4. You will then be directed to the next pair of results for a new search term</p>
-  <p>5. There will be 20 rounds. Good luck! </p>
-  <p>Here is what the game will look like:</p>
+
+<div class="rules">
+    <h2>How to Play:</h2>
+    <p>1. You will be shown two sets of results for each search term. You will have 30 seconds to guess which side is
+        from Google. </p>
+    <p>2. If you get it right, you will earn 10 points. For being wrong, you lose 5 points</p>
+    <p>3. If you make no selection after 30 seconds, you will earn 0 points
+    <p>4. You will then be directed to the next pair of results for a new search term</p>
+    <p>5. There will be 20 rounds. Good luck! </p>
+    <p>Here is what the game will look like:</p>
 </div>
 {% load staticfiles %}
 <img src="{% static 'myapp/demo2.jpg' %}" alt="demo">
-<h3 class="header" style="float: left;	margin-left: 105px;">The Legal Stuff:</h3>
-<h3> </h3>
-<div>
-<p>This game has been explained to me. I have had a chance to ask questions. If I have questions later about this game, or if I have been harmed by participating in it, I can contact Dr. Chirag Shah (chirags@uw.edu). If I have questions about my rights as a participant, I can call the Human Subjects Division at (206) 543-0098 or call collect at (206) 221-5940. I acknowledge that I am not affiliated with University of Washington (UW), a family member of a UW employee, or UW student involved in this particular game.
-</p>
+
+<h3></h3>
+<div class="rules">
+    <h2>The Legal Stuff:</h2>
+    <p>This game has been explained to me. I have had a chance to ask questions. If I have questions later about this
+        game, or if I have been harmed by participating in it, I can contact Dr. Chirag Shah (chirags@uw.edu). If I have
+        questions about my rights as a participant, I can call the Human Subjects Division at (206) 543-0098 or call
+        collect at (206) 221-5940. I acknowledge that I am not affiliated with University of Washington (UW), a family
+        member of a UW employee, or UW student involved in this particular game.
+    </p>
 </div>
 <div style="text-align: center">
-	<form action="../redir1/{{ respondent_id }}/" id="to_home">
-	<input type="submit" value="Agree and Begin" class="button">
+    <form action="../redir1/{{ respondent_id }}/" id="to_home">
+        <input type="submit" value="Agree and Begin" class="button">
+    </form>
 </div>
 </form>
 </body>

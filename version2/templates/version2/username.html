@@ -2,13 +2,30 @@
 <html>
 <head>
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Kalam&display=swap');
+
+        .text {
+            padding-top: 200px;
+            font-size: 20px;
+            text-align: center;
+            font-family: 'Kalam', cursive;
+        }
+
+        form {
+            width: 20%;
+            margin-left: 45%;
+        }
     </style>
 
 </head>
 <body>
+<div class="text">
+    <p>Congratulations! You've reached the leader board TOP 5!</p>
+    <p>Enter your username and it will be displayed on the leader board next page.</p>
+</div>
 <form action="../leaderboard{{ score }}/" id="main_form" method="get">
-<input type="text" name="username">
-<input type="submit" value="Submit">
+    <input type="text" name="username">
+    <input type="submit" value="Submit">
 </form>
 </body>
 </html>

@@ -6,255 +6,333 @@
 <html>
 
 <head>
-  <style>
-    .header {
-      padding-top: 8px;
-      margin: 0px;
-      text-align: center;
-      color: #63aba8;
-      font-family: "verdana";
-    }
-    .timer {
-      float: center;
-      padding-top: 10px;
-      margin: 0px;
-      text-align: center;
-      color: #63aba8;
-      font-family: "verdana";
-      font-size: 18px;
-      margin-top: 0px;
-      padding-top: 0px;
-    }
-    .column {
-      width: 47%;
-      margin: 5px;
-      padding: 5px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-    .columnl {
-      float: left;
-    }
-    .columnr {
-      float: right;
-    }
-    .row:after {
-      content: "";
-      display: table;
-      clear: both;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .main_divs {
-      border-radius: 5px;
-      background-color: #f2f2f2;
-      padding: 5px;
-    }
-    
-    .query {
-      background-color: white;
-      text-align: left;
-      padding: 15px;
-      margin-left: 100px;
-      margin-right: 100px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: "verdana";
-      color: #565656;
-    }
-    .result {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding-right: 2px;
-      padding-left: 2px;
-      font-family: "roboto";
-    }
-    .result_title {
-      height: {{ title_height }};
-      margin-bottom: 0px;
-      margin-top: 0px;
-      font-size: {{ font_size_title }};
-      text-decoration: underline;
-      color: blue;
-    }
-    .result_data {
-      height: {{ body_height }};
-      margin-top: 2px;
-      padding-bottom: 10px;
-	  margin-bottom: 0px;
-      font-size: {{ font_size_body }};
-      text-decoration: none;
-      color: #565656;
-    }
-	.url {
-	  height: 15px;
-	  margin-bottom: 0px;
-	  margin-top: 0px;
-	  font-size: 13px;
-	  color: #008000;
-	  padding-top: 1px;
-	  padding-bottom: 0px;
-	 }
-    .radio_div {
-      float: left;
-      text-align: center;
-      width: 50%;
-    }
-    .button {
-      background-color: #63aba8;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .button:hover {
-      background-color: #4d8583;
-    }
-	.button:disabled {
-	  background-color: #d3d3d3;
-	}
-    .form-radio {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      display: inline-block;
-      position: relative;
-      background-color: #d3d3d3;
-      color: #666;
-      top: 10px;
-      height: 30px;
-      width: 30px;
-      border: 1px solid #ccc;
-      border-radius: 50px;
-      cursor: pointer;
-      margin-right: 7px;
-      outline: none;
-    }
-    .form-radio:checked::before {
-      position: absolute;
-      font: 13px/1 'Open Sans', sans-serif;
-      left: 11px;
-      top: 7px;
-      content: '\02143';
-      color: white;
-      transform: rotate(40deg);
-    }
-    .form-radio:hover {
-      background-color: #f7f7f7;
-    }
-    .form-radio:checked {
-      background-color: #63aba8;
-    }
-	#myProgress {
-	  width: 100%;
-	  background-color: grey;
-	}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
 
-	#myBar {
-	  width: 100%;
-	  height: 30px;
-	  background-color: green;
-	}
-  </style>
+        .header {
+            padding: 15px;
+            margin: 0px;
+            text-align: center;
+            color: #63aba8;
+            font-size: 60px;
+        }
 
-  <title>Google or Not?</title>
+        .timer {
+            float: center;
+            padding-top: 10px;
+            margin: 0px;
+            text-align: center;
+            color: #63aba8;
+            font-size: 25px;
+            padding-bottom: 20px;
+        }
+
+        .column {
+            width: 47%;
+            margin: 5px;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .columnl {
+            float: left;
+        }
+
+        .columnr {
+            float: right;
+        }
+
+        .row1:after {
+            content: "";
+            display: table;
+            clear: both;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .main_divs {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 5px;
+        }
+
+        .query {
+            background-color: white;
+            text-align: left;
+            padding: 10px;
+            margin-left: 100px;
+            margin-right: 100px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: "verdana";
+            color: #565656;
+            font-size: 30px;
+        }
+
+        .result {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 2px;
+            padding-left: 2px;
+            font-family: "roboto";
+        }
+
+        .result_title {
+            margin-bottom: 0px;
+            margin-top: 0px;
+            font-size: 25px;
+            text-decoration: underline;
+            color: blue;
+        }
+
+        .result_data {
+            height: 60px;
+            margin-top: 2px;
+            padding-bottom: 10px;
+            margin-bottom: 0px;
+            font-size: 20px;
+            text-decoration: none;
+            color: #565656;
+        }
+
+        .url {
+            height: 20px;
+            margin-bottom: 0px;
+            margin-top: 0px;
+            font-size: 18px;
+            color: #008000;
+            padding-top: 1px;
+            padding-bottom: 0px;
+        }
+
+        .radio_div {
+            float: left;
+            text-align: center;
+            width: 50%;
+        }
+
+        .button {
+            background-color: #63aba8;
+            border: none;
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 35px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .button:hover {
+            background-color: #4d8583;
+        }
+
+        .button:disabled {
+            background-color: #d3d3d3;
+        }
+
+        .form-radio {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: inline-block;
+            position: relative;
+            background-color: #d3d3d3;
+            color: #666;
+            top: 10px;
+            height: 80px;
+            width: 80px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-right: 7px;
+            outline: none;
+        }
+
+        .form-radio:checked::before {
+            position: absolute;
+            font: 13px/1 'Open Sans', sans-serif;
+            left: 11px;
+            top: 7px;
+            content: '\02143';
+            color: white;
+            transform: rotate(40deg);
+        }
+
+        .form-radio:hover {
+            background-color: #f7f7f7;
+        }
+
+        .form-radio:checked {
+            background-color: #63aba8;
+        }
+
+        #myProgress {
+            width: 100%;
+            background-color: lightgrey;
+            margin-bottom: 10px;
+        }
+
+        #myBar {
+            width: 100%;
+            height: 20px;
+            background-color: green;
+        }
+
+        @media (min-width: 1000px) {
+            .header {
+                font-size: 30px;
+            }
+
+            .query {
+                font-size: 15px;
+            }
+
+            .result_title {
+                font-size: 15px;
+            }
+
+            .result_data {
+                height: 20px;
+                font-size: 13px;
+            }
+
+            .url {
+                height: 15px;
+                font-size: 10px;
+            }
+
+            .row-md-2 {
+                justify-content: center;
+            }
+
+            .button {
+                padding: 10px 25px;
+                font-size: 20px;
+            }
+
+            .form-radio {
+                height: 30px;
+                width: 30px;
+            }
+
+
+            .column {
+                width: 600px;
+                margin-left: 40px;
+                margin-right: 40px;
+            }
+
+            .timer {
+                font-size: 20px;
+            }
+        }
+    </style>
+
+    <title>Google or Not?</title>
 
 </head>
 
 <body style="background-color: #f2f2f2">
-  <h1 class="header">Google or Not?</h1>
+<h1 class="header">Google or Not?</h1>
 
-  <!-- Sets up the Query bar -->
-  <div class="main_divs">
+<!-- Sets up the Query bar -->
+<div class="main_divs">
     <p class="query" id="qstring">Search: {{ query_name }}</p>
-	
-  </div>
-  <div id="myProgress">
+</div>
+<div id="myProgress">
     <div id="myBar"></div>
-  </div>
- 
-  <!-- Sets up the two sets of search results -->
-  <div class="row main_divs">
-    <div class="column columnl" style="background-color: white">
-	  {% for snippet in left_snippets %}
-	    <div class="result">
-          <h2 class="result_title result">{{ snippet.1 }}</h2>
-		  <p class="url result">{{ snippet.2 }}</p>
-          <p class="result_data result">{{ snippet.3 }}</p>
-        </div>  
-	  {% endfor %}
-	</div>
-	
-    <div class="column columnr" style="background-color: white">
-      {% for snippet in right_snippets %}
-	    <div class="result">
-          <h2 class="result_title result">{{ snippet.1 }}</h2>
-		  <p class="url result">{{ snippet.2 }}</p>
-          <p class="result_data result">{{ snippet.3 }}</p>
-        </div>  
-	  {% endfor %}
-    </div>
-  </div>
+</div>
 
-  <!-- Sets up the input form -->
-  <form action="../../redir{{ curr_qid }}/{{ respondent_id }}/" id="main_form" method="get">
-  <div class="row main_divs">
-    <div class="radio_div">
-      <input type="radio" name="radio" value="left" id="radio-left" class="form-radio" disabled>
+<div class="container-fluid">
+    <div class="row-md-2">
+        <!-- Sets up the two sets of search results -->
+        <div class="row1 main_divs">
+            <div class="col">
+                <div class="column columnl" style="background-color: white">
+                    {% for snippet in left_snippets %}
+                        <div class="result">
+                            <h2 class="result_title result">{{ snippet.1 }}</h2>
+                            <p class="url result">{{ snippet.2 }}</p>
+                            <p class="result_data result">{{ snippet.3 }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="column columnr" style="background-color: white">
+                    {% for snippet in right_snippets %}
+                        <div class="result">
+                            <h2 class="result_title result">{{ snippet.1 }}</h2>
+                            <p class="url result">{{ snippet.2 }}</p>
+                            <p class="result_data result">{{ snippet.3 }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="radio_div">
-      <input type="radio" name="radio" value="right" id="radio-right" class="form-radio" disabled>
-    </div>
-  </div>
+    <!-- Sets up the input form -->
+    <form action="../../redir{{ curr_qid }}/{{ respondent_id }}/" id="main_form" method="get">
+        <div class="row1 main_divs">
+            <div class="radio_div">
+                <input type="radio" name="radio" value="left" id="radio-left" class="form-radio" disabled>
+            </div>
 
-  <!-- Sets up the submit button -->
-  <div class="main_divs">
-    <div style="text-align: center">
-		<input type="submit" value="submit" class="button" id="submit_button" disabled>
-		<p class="timer" id="remaining">{{ curr_qid }}</p>
+            <div class="radio_div">
+                <input type="radio" name="radio" value="right" id="radio-right" class="form-radio" disabled>
+            </div>
+        </div>
 
-    </div>
-  </div>
-  <input type="hidden" name="time_elapsed" value="0" id="time_elapsed_input">
-  <input type="hidden" name="respondent_id" value="{{ respondent_id }}">
-  </form>
+        <!-- Sets up the submit button -->
+        <div class="main_divs">
+            <div style="text-align: center">
+                <input type="submit" value="submit" class="button" id="submit_button" disabled>
+                <p class="timer" id="remaining">{{ curr_qid }}</p>
+
+            </div>
+        </div>
+        <input type="hidden" name="time_elapsed" value="0" id="time_elapsed_input">
+        <input type="hidden" name="respondent_id" value="{{ respondent_id }}">
+    </form>
+</div>
 </body>
 <script>
-secondsRemaining = 30
+    secondsRemaining = 30
 
-function updateSeconds() {
-	// time is up
-	elapsed = 30 - secondsRemaining;
-	document.getElementById("time_elapsed_input").value = elapsed.toString();
-	if (elapsed == 2) {
-		document.getElementById("radio-left").disabled = false;
-		document.getElementById("radio-right").disabled = false;
-	}
-	
-	if (secondsRemaining < 1) {
-		document.getElementById("main_form").submit();
-	} else {
-	    document.getElementById("myBar").style.width = (secondsRemaining / 30.0) * 100 + "%";
-		secondsRemaining--;
-	}
-}
-rem = 22 - parseInt(document.getElementById("remaining").innerHTML);
+    function updateSeconds() {
+        // time is up
+        elapsed = 30 - secondsRemaining;
+        document.getElementById("time_elapsed_input").value = elapsed.toString();
+        if (elapsed == 2) {
+            document.getElementById("radio-left").disabled = false;
+            document.getElementById("radio-right").disabled = false;
+        }
 
-var radios = document.forms["main_form"].elements["radio"];
-for(var i = 0, max = radios.length; i < max; i++) {
-    radios[i].onclick = function() {
-        document.getElementById("submit_button").disabled = false;
+        if (secondsRemaining < 1) {
+            document.getElementById("main_form").submit();
+        } else {
+            document.getElementById("myBar").style.width = (secondsRemaining / 30.0) * 100 + "%";
+            secondsRemaining--;
+        }
     }
-}
-document.getElementById("remaining").innerHTML = "Question " + (21 - rem).toString() + "/20";
-updateSeconds();
-setInterval(updateSeconds, 1000);
+
+    rem = 22 - parseInt(document.getElementById("remaining").innerHTML);
+
+    var radios = document.forms["main_form"].elements["radio"];
+    for (var i = 0, max = radios.length; i < max; i++) {
+        radios[i].onclick = function () {
+            document.getElementById("submit_button").disabled = false;
+        }
+    }
+    document.getElementById("remaining").innerHTML = "Question " + (21 - rem).toString() + "/20";
+    updateSeconds();
+    setInterval(updateSeconds, 1000);
 </script>
 </html>
