@@ -19,6 +19,11 @@
             font-size: 40px;
         }
 
+        #percentile {
+            font-size: 20px;
+            color: rgba(255, 200, 132);
+        }
+
         .header1 {
             padding-top: 100px;
         }
@@ -186,6 +191,7 @@
 
 <h1 class="header header1">Thank you for playing!</h1>
 <h2 class="header">You scored {{ score }} points!</h2>
+<h2 class="header" id="percentile"></h2>
 <div class="share-block">
     <p class="share">Share with you friends!</p>
     {#    <ul class="share-buttons">#}
@@ -215,19 +221,19 @@
 
     <!-- Your share button code -->
     <div class="shares">
-    <div class="fb-share-button"
-         data-href="https://shielded-tundra-32718.herokuapp.com"
-         data-layout="button">
-    </div>
+        <div class="fb-share-button"
+             data-href="https://shielded-tundra-32718.herokuapp.com"
+             data-layout="button">
+        </div>
 
-    <p></p>
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
-       data-url="https://shielded-tundra-32718.herokuapp.com" data-show-count="false"> Tweet </a>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <p></p>
+        <p></p>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+           data-url="https://shielded-tundra-32718.herokuapp.com" data-show-count="false"> Tweet </a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <p></p>
 
-    <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-    <script type="IN/Share" data-url="https://shielded-tundra-32718.herokuapp.com"></script>
+        <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+        <script type="IN/Share" data-url="https://shielded-tundra-32718.herokuapp.com"></script>
     </div>
 
 </div>
@@ -260,6 +266,55 @@
 
 <script>
 
+    function Quartile(data, q) {
+        data = Array_Sort_Numbers(data);
+        var pos = ((data.length) - 1) * q;
+        var base = Math.floor(pos);
+        var rest = pos - base;
+        if ((data[base + 1] !== undefined)) {
+            return data[base] + rest * (data[base + 1] - data[base]);
+        } else {
+            return data[base];
+        }
+    }
+
+    function Array_Sort_Numbers(inputarray) {
+        return inputarray.sort(function (a, b) {
+            return a - b;
+        });
+    }
+
+    var allscore = [];
+    {% for datum in score_dict %}
+        {#var s = {{ datum.0 }}#}
+        {#    var freq = {{ datum.1 }}#}
+        for (let i = 0; i < {{ datum.1 }}; i++) {
+            allscore.push({{ datum.0 }})
+        }
+    {% endfor %}
+
+    var per25 = Quartile(allscore, 0.25);
+    var per50 = Quartile(allscore, 0.5);
+    var per75 = Quartile(allscore, 0.75);
+    var per90 = Quartile(allscore, 0.9);
+
+
+    function Check_Quartile(score) {
+        if (score > per90) {
+            return ("You exceeded 90% of other players! It's hard to find others like you!")
+        } else if (score > per75) {
+            return ("You exceeded 75% of other players! Keep it going!")
+        } else if (score > per50) {
+            return ("You exceeded 50% of other players! You have average eyes and got deceive as much as other do!")
+        } else if (score > per25) {
+            return ("You exceeded 25% of other players! Get some training and come back!")
+        } else {
+            return ("You exceeded 10% of other players! It's okay my friend. Get some glasses and try again!")
+        }
+    }
+
+    document.getElementById("percentile").innerText =  Check_Quartile({{ score }})
+
     var newlist = []
     var current_score = []
     {% for datum in score_dict %}
@@ -277,9 +332,6 @@
             current_score.push(point2)
         {% endif %}
     {% endfor %}
-
-    console.log(newlist)
-
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
