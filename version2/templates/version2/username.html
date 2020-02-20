@@ -4,6 +4,12 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Kalam&display=swap');
 
+        {% load staticfiles %}
+        body {
+            background-image: url("{% static 'myapp/bg.jpg' %}");
+            background-size: 150%;
+        }
+
         .text {
             padding-top: 200px;
             padding-left: 10px;
@@ -30,6 +36,10 @@
                 height: 10%;
                 margin-left: 40%;
                 font-size: 20px;
+            }
+
+            body {
+                background-size: 100%;
             }
         }
     </style>

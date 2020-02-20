@@ -111,6 +111,10 @@
             right: 20px;
         }
 
+        .shares {
+            float: right;
+        }
+
         ul.share-buttons {
             list-style: none;
             padding: 0;
@@ -169,33 +173,63 @@
 
     </style>
 
+    <meta property="og:url" content="https://shielded-tundra-32718.herokuapp.com"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Google or Not?"/>
+    <meta property="og:description" content="Some description"/>
+    {#    <meta property="og:image" content="https://www.your-domain.com/path/image.jpg"/>#}
+
     <title>Do you Google?</title>
 </head>
 <body style="background-color: #f2f2f2">
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
 
 <h1 class="header header1">Thank you for playing!</h1>
 <h2 class="header">You scored {{ score }} points!</h2>
 <div class="share-block">
     <p class="share">Share with you friends!</p>
-    <ul class="share-buttons">
-        <li>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F&quote="
-               title="Share on Facebook" target="_blank"><img alt="Share on Facebook"
-                                                              src="{% static 'myapp/Facebook.png' %}"/></a></li>
-        <li>
-            <a href="https://twitter.com/intent/tweet?source=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F&text=:%20https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F"
-               target="_blank" title="Tweet"><img alt="Tweet" src="{% static 'myapp/Twitter.png' %}"/></a></li>
-        <li>
-            <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F&title=&summary=&source=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F"
-               target="_blank" title="Share on LinkedIn"><img alt="Share on LinkedIn"
-                                                              src="{% static 'myapp/LinkedIn.png' %}"/></a></li>
-        <li><a href="mailto:?subject=&body=:%20https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F" target="_blank"
-               title="Send email"><img alt="Send email" src="{% static 'myapp/Email.png' %}"/></a></li>
-    </ul>
+    {#    <ul class="share-buttons">#}
+    {#        <li>#}
+    {#            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F&quote="#}
+    {#               title="Share on Facebook" target="_blank"><img alt="Share on Facebook"#}
+    {#                                                              src="{% static 'myapp/Facebook.png' %}"/></a></li>#}
+    {#        <li>#}
+    {#            <a href="https://twitter.com/intent/tweet?source=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F&text=:%20https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F"#}
+    {#               target="_blank" title="Tweet"><img alt="Tweet" src="{% static 'myapp/Twitter.png' %}"/></a></li>#}
+    {#        <li>#}
+    {#            <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F&title=&summary=&source=https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F"#}
+    {#               target="_blank" title="Share on LinkedIn"><img alt="Share on LinkedIn"#}
+    {#                                                              src="{% static 'myapp/LinkedIn.png' %}"/></a></li>#}
+    {#        <li><a href="mailto:?subject=&body=:%20https%3A%2F%2Fshielded-tundra-32718.herokuapp.com%2F" target="_blank"#}
+    {#               title="Send email"><img alt="Send email" src="{% static 'myapp/Email.png' %}"/></a></li>#}
+    {#    </ul>#}
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Your share button code -->
+    <div class="shares">
+    <div class="fb-share-button"
+         data-href="https://shielded-tundra-32718.herokuapp.com"
+         data-layout="button">
+    </div>
+
+    <p></p>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+       data-url="https://shielded-tundra-32718.herokuapp.com" data-show-count="false"> Tweet </a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <p></p>
+
+    <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+    <script type="IN/Share" data-url="https://shielded-tundra-32718.herokuapp.com"></script>
+    </div>
+
 </div>
 
 
