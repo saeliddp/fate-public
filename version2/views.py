@@ -4,6 +4,7 @@ from version2.extraction import *
 from django.shortcuts import redirect
 from version2.models import *
 import random
+import pickle
 from django.views.decorators.cache import cache_control
 
 num_search_results = 10
@@ -25,7 +26,8 @@ alg_to_snippets = {
 }
 
 # whether or not to swap the left and right algorithms on a given turn
-swap = [False, True, True, False, True, True, True, False, False, False, False, False, True, True, False, False, True, False, True, True, False]
+with open('version2/swapvals.pickle', 'rb') as fr:
+    swap = pickle.load(fr)
 
 def get_ip_address(request):
     """ use requestobject to fetch client machine's IP Address """
@@ -45,24 +47,28 @@ def instructions(request):
             browser_info += "PC"
     else:
         browser_info += "Mobile"
-            
+    first_possible = list(range(1,49))
+    second_possible = list(range(49, 97))
+    f10 = ""
+    s10 = ""
+    for i in range(10):
+        f10 += str(first_possible.pop(random.randint(0, len(first_possible) - 1))) + " "
+        s10 += str(second_possible.pop(random.randint(0, len(second_possible) - 1))) + " "
     user = Respondent(
         ip_addr=ip,
-        browser=browser_info)
+        browser=browser_info,
+        order=f10+s10[:-1])
     user.save()
-    if user.curr_q != 0:
-        return redirect('version2-redir', q_id=1, respondent_id=respondent_id)
-    else:
-        context = {
-            'respondent_id': user.id
-        }
-        return render(request, 'version2/instructions.html', context)
+    context = {
+        'respondent_id': user.id
+    }
+    return render(request, 'version2/instructions.html', context)
 
 def getAlgs(id):
-    if id < 11 and not swap[id-1]:
+    if id < 49 and not swap[id-1]:
         left_alg = round_one_l
         right_alg = round_one_r
-    elif id < 11:
+    elif id < 49:
         left_alg = round_one_r
         right_alg = round_one_l
     elif not swap[id-1]:
@@ -82,7 +88,7 @@ def feedback(request, q_id, respondent_id, correct, current_score):
         context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "INCORRECT", "current_score": current_score}
     else:
         context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "SKIPPED", "current_score": current_score}
-
+    
     return render(request, 'version2/feedback.html', context)
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
@@ -91,11 +97,12 @@ def redir(request, q_id, respondent_id):
     id = user.curr_q
     
     if id < q_id:
+        query_num = int(user.order.split(" ")[id - 1])
         choice = 'NO_CHOICE'
         not_choice = 'NO_CHOICE'
         if 'radio' in request.GET:
-            left_alg = getAlgs(id)[0]
-            right_alg = getAlgs(id)[1]
+            left_alg = getAlgs(query_num)[0]
+            right_alg = getAlgs(query_num)[1]
             if request.GET['radio'] == 'left':
                 choice = left_alg
                 not_choice = right_alg
@@ -105,7 +112,7 @@ def redir(request, q_id, respondent_id):
         
         if 'time_elapsed' in request.GET:
             response = Response(respondent=user,
-                                query=Query.objects.filter(query_id=id)[0],
+                                query=Query.objects.filter(query_id=query_num)[0], #gotta change thisssssssssss
                                 chosen_alg=Algorithm.objects.filter(name=choice)[0],
                                 unchosen_alg=Algorithm.objects.filter(name=not_choice)[0],
                                 time_elapsed=int(request.GET['time_elapsed']))
@@ -140,9 +147,6 @@ def home(request, q_id, respondent_id):
         
     global left_alg
     global right_alg
-        
-    left_alg = getAlgs(q_id)[0]
-    right_alg = getAlgs(q_id)[1]
     request.session.flush()
     font_size_title = "14px"
     font_size_body = "12px"
@@ -154,10 +158,14 @@ def home(request, q_id, respondent_id):
         title_height = "22px"
         body_height = "32px"
     if q_id <= 20:
+        query_num = int(user.order.split(" ")[user.curr_q - 1])
+
+        left_alg = getAlgs(query_num)[0]
+        right_alg = getAlgs(query_num)[1]
         context = {
-            'left_snippets': alg_to_snippets[left_alg][q_id],
-            'right_snippets': alg_to_snippets[right_alg][q_id],
-            'query_name': alg_to_snippets[right_alg][q_id][0][0],
+            'left_snippets': alg_to_snippets[left_alg][query_num],
+            'right_snippets': alg_to_snippets[right_alg][query_num],
+            'query_name': alg_to_snippets[right_alg][query_num][0][0],
             'curr_qid': q_id + 1,
             'respondent_id': respondent_id,
             'font_size_title': font_size_title,

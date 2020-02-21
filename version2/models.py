@@ -9,6 +9,8 @@ class Respondent(models.Model):
     curr_q = models.PositiveSmallIntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True)
     score = models.PositiveIntegerField(default=0)
+    order = models.CharField(max_length=70, default="1 2 3 4 5 6 7 8 9 10 49 50 51 52 53 54 55 56 57 58")
+
     def __str__(self):
         return self.email + ", " + self.ip_addr
 
