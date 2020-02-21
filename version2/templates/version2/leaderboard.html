@@ -170,7 +170,7 @@
 
             .chart {
                 width: 300px;
-                margin-top: 60px;
+                margin-top: -100px;
                 margin-left: 0;
                 position: absolute;
             }
@@ -250,6 +250,7 @@
     {% for datum in top_five %}
         {% if forloop.counter < 6 %}
             <div class="row">
+                <div class="username">{{ datum.1 }}</div>
                 <div class="score">{{ datum.0 }}</div>
             </div>
         {% endif %}
@@ -265,6 +266,7 @@
 
 
 <script>
+    console.log({{ top_five }})
 
     function Quartile(data, q) {
         data = Array_Sort_Numbers(data);
