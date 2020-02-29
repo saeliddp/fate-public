@@ -24,7 +24,7 @@
             margin: 0px;
             text-align: center;
             color: #63aba8;
-            font-size: 25px;
+            font-size: 40px;
             padding-bottom: 20px;
         }
 
@@ -68,7 +68,7 @@
             border-radius: 4px;
             font-family: "verdana";
             color: #565656;
-            font-size: 30px;
+            font-size: 36px;
         }
 
         .result {
@@ -82,26 +82,26 @@
         .result_title {
             margin-bottom: 0px;
             margin-top: 0px;
-            font-size: 25px;
+            font-size: 32px;
             text-decoration: underline;
             color: blue;
         }
 
         .result_data {
-            height: 60px;
+            height: 175px;
             margin-top: 2px;
-            padding-bottom: 10px;
+            padding-bottom: 5px;
             margin-bottom: 0px;
-            font-size: 20px;
+            font-size: 28px;
             text-decoration: none;
             color: #565656;
         }
 
         .url {
-            height: 20px;
+            height: 40px;
             margin-bottom: 0px;
             margin-top: 0px;
-            font-size: 18px;
+            font-size: 26px;
             color: #008000;
             padding-top: 1px;
             padding-bottom: 0px;
@@ -117,14 +117,18 @@
             background-color: #63aba8;
             border: none;
             color: white;
-            padding: 20px 40px;
+            padding: 20px 300px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 35px;
+            font-size: 70px;
             margin-top: 20px;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 20px;
+        }
+
+        .submit {
+            padding-top: 50px;
         }
 
         .button:hover {
@@ -183,7 +187,26 @@
             background-color: green;
         }
 
+        .top {
+            width: 100%;
+            background: #f2f2f2;
+            position: fixed;
+            z-index: 10;
+        }
+
+        .container-fluid {
+            padding-top: 300px;
+        }
+
         @media (min-width: 1000px) {
+            .submit {
+            padding-top: 0px;
+            }
+
+            .container-fluid {
+            padding-top: 170px;
+            }
+
             .header {
                 font-size: 30px;
             }
@@ -213,6 +236,7 @@
             .button {
                 padding: 10px 25px;
                 font-size: 20px;
+                border-radius: 4px;
             }
 
             .form-radio {
@@ -238,14 +262,17 @@
 </head>
 
 <body style="background-color: #f2f2f2">
-<h1 class="header">Google or Not?</h1>
 
-<!-- Sets up the Query bar -->
-<div class="main_divs">
-    <p class="query" id="qstring">Search: {{ query_name }}</p>
-</div>
-<div id="myProgress">
-    <div id="myBar"></div>
+<div class="top">
+    <h1 class="header">Google or Not?</h1>
+
+    <!-- Sets up the Query bar -->
+    <div class="main_divs">
+        <p class="query" id="qstring">Search: {{ query_name }}</p>
+    </div>
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
 </div>
 
 <div class="container-fluid">
@@ -292,7 +319,7 @@
 
         <!-- Sets up the submit button -->
         <div class="main_divs">
-            <div style="text-align: center">
+            <div style="text-align: center" class="submit">
                 <input type="submit" value="submit" class="button" id="submit_button" disabled>
                 <p class="timer" id="remaining">{{ curr_qid }}</p>
 

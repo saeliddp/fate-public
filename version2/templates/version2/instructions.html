@@ -2,8 +2,12 @@
 <html>
 <head>
     <style>
-        .header {
+
+        body {
             background-color: #f2f2f2;
+        }
+
+        .header {
             padding-top: 10px;
             margin: 0px;
             text-align: center;
@@ -16,15 +20,11 @@
             color: #565656;
             text-align: left;
             font-size: 14px;
-            margin-top: 10px;
-            margin-left: 100px;
-            margin-right: 100px;
-            margin-bottom: 10px;
+            margin: 10px 100px;
         }
 
         div {
             border-radius: 5px;
-            background-color: #f2f2f2;
             padding: 5px;
         }
 
@@ -37,14 +37,15 @@
             background-color: #63aba8;
             border: none;
             color: white;
-            padding: 25px 40px;
+            padding: 30px 80px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 30px;
-            margin: 4px 2px 60px;
+            font-size: 60px;
+            margin-top: 80px;
+            margin-bottom: 100px;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 15px;
         }
 
         .button:hover {
@@ -64,17 +65,30 @@
 
         .rules p {
             padding-top: 5px;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .rules h2 {
-            font-size: 12px;
+            font-size: 15px;
             color: #63aba8;
             font-family: "verdana";
             padding-left: 30px;
         }
 
         @media (min-width: 1000px) {
+        {% load staticfiles %}
+
+            body {
+                background-image: url("{% static 'myapp/08.png' %}");;
+            }
+
+            .block {
+                background: white;
+                margin: 80px 220px;
+                border-radius: 10px;
+                border: 2px solid #cbcbcb;
+            }
+
             .rules p {
                 font-size: 15px;
             }
@@ -85,45 +99,63 @@
             }
 
             .button {
-            padding: 15px 30px;
-            font-size: 18px;
+                padding: 15px 30px;
+                font-size: 18px;
+                border-radius: 5px;
+                margin-top: 20px;
+                margin-bottom: 40px;
             }
         }
     </style>
     <title>Google or Not?</title>
 </head>
-<body style="background-color: #f2f2f2">
-<h1 class="header">Google or Not?</h1>
-<h1 class="header">Test How Well You Know Google!</h1>
+<body>
 
-<div class="rules">
-    <h2>How to Play:</h2>
-    <p>1. You will be shown two sets of results for each search term. You will have 30 seconds to guess which side is
-        from Google. </p>
-    <p>2. If you get it right, you will earn 10 points. For being wrong, you lose 5 points</p>
-    <p>3. If you make no selection after 30 seconds, you will earn 0 points
-    <p>4. You will then be directed to the next pair of results for a new search term</p>
-    <p>5. There will be 20 rounds. Good luck! </p>
-    <p>Here is what the game will look like:</p>
-</div>
-{% load staticfiles %}
-<img src="{% static 'myapp/demo2.jpg' %}" alt="demo">
+<div class="block">
+    <h1 class="header">Google or Not?</h1>
+    <h1 class="header">Test How Well You Know Google!</h1>
 
-<h3></h3>
-<div class="rules">
-    <h2>The Legal Stuff:</h2>
-    <p>This game has been explained to me. I have had a chance to ask questions. If I have questions later about this
-        game, or if I have been harmed by participating in it, I can contact Dr. Chirag Shah (chirags@uw.edu). If I have
-        questions about my rights as a participant, I can call the Human Subjects Division at (206) 543-0098 or call
-        collect at (206) 221-5940. I acknowledge that I am not affiliated with University of Washington (UW), a family
-        member of a UW employee, or UW student involved in this particular game.
-    </p>
-</div>
-<div style="text-align: center">
-    <form action="../redir1/{{ respondent_id }}/" id="to_home">
-        <input type="submit" value="Agree and Begin" class="button">
+    <div class="rules">
+        <h2>How to Play:</h2>
+        <p>1. You will be shown <span style="color: blue; ">two sets of results</span> for each search term. You will
+            have <span style="color: blue; ">30 seconds</span> to guess which side is
+            from Google. </p>
+        <p>2. If you get it <span style="color: green; ">right</span>, you will earn <span style="color: green; ">10 points</span>.
+            For being <span style="color: red; ">wrong</span>, you lose <span style="color: red; ">5 points</span></p>
+        <p>3. If you make <span style="color: orange; ">no selection</span> after 30 seconds, you will earn <span
+                style="color: orange; ">0 points</span>
+        <p>4. You will then be directed to the next pair of results for a new search term</p>
+        <p>5. There will be <span style="color: blue; ">20 rounds</span>. Good luck! </p>
+        <p>Here is what the game will look like:</p>
+    </div>
+
+    {% load staticfiles %}
+    {#<img id="demo" src="{% static 'myapp/demo_phone.png' %}" alt="demo">#}
+    <picture>
+        <source media="(min-width: 1000px)" srcset="{% static 'myapp/demo2.jpg' %}">
+        <source media="(min-width: 480px)" srcset="{% static 'myapp/demo_phone.png' %}">
+        <img src="OtherImage.png" alt="IfItDoesntMatchAnyMedia">
+    </picture>
+
+    <h3></h3>
+    <div class="rules">
+        <h2>The Legal Stuff:</h2>
+        <p>This game has been explained to me. I have had a chance to ask questions. If I have questions later about
+            this
+            game, or if I have been harmed by participating in it, I can contact Dr. Chirag Shah (chirags@uw.edu). If I
+            have
+            questions about my rights as a participant, I can call the Human Subjects Division at (206) 543-0098 or call
+            collect at (206) 221-5940. I acknowledge that I am not affiliated with University of Washington (UW), a
+            family
+            member of a UW employee, or UW student involved in this particular game.
+        </p>
+    </div>
+    <div style="text-align: center">
+        <form action="../redir1/{{ respondent_id }}/" id="to_home">
+            <input type="submit" value="Agree and Play!" class="button">
+        </form>
+    </div>
     </form>
 </div>
-</form>
 </body>
 </html>
