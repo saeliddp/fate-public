@@ -135,7 +135,6 @@
             padding-top: 30px;
             height: 50%;
             width: 50%;
-            margin-left: 25%;
         }
 
         .board {
@@ -144,10 +143,30 @@
             margin-bottom: 60px;
         }
 
+        .button {
+            background-color: #63aba8;
+            border: none;
+            color: white;
+            padding: 30px 80px;
+            text-align: center;
+            font-size: 60px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
+
 
         @media (min-width: 1000px) {
             body {
                 background-image: url("{% static 'myapp/BG04.png' %}");
+            }
+
+            .button {
+                padding: 15px 30px;
+                font-size: 22px;
+                border-radius: 5px;
+                margin-top: 20px;
+                margin-bottom: 40px;
             }
 
             .block {
@@ -161,7 +180,6 @@
                 padding-top: 30px;
                 height: 20%;
                 width: 20%;
-                margin-left: 40%;
             }
 
             #percentile {
@@ -266,6 +284,12 @@
 
     </div>
 
+    <div style="text-align: center">
+        <form action="https://shielded-tundra-32718.herokuapp.com/" id="replay">
+            <input type="submit" value="Play Again" class="button">
+        </form>
+    </div>
+
 
     <div class="board">
         <h3 class="board-title">Leaderboard TOP 5!</h3>
@@ -305,19 +329,27 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
 
-        <!-- Your share button code -->
-        <div class="shares">
-            <div class="fb-share-button"
-                 data-href="https://shielded-tundra-32718.herokuapp.com"
-                 data-layout="button">
+            <!-- Your share button code -->
+            <div class="shares">
+                <div class="fb-share-button"
+                     data-href="https://shielded-tundra-32718.herokuapp.com"
+                     data-layout="button">
+                </div>
+
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                   data-url="https://shielded-tundra-32718.herokuapp.com" data-show-count="false"> Tweet </a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+                <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+                <script type="IN/Share" data-url="https://shielded-tundra-32718.herokuapp.com"></script>
             </div>
 
-            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
-               data-url="https://shielded-tundra-32718.herokuapp.com" data-show-count="false"> Tweet </a>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
 
-            <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-            <script type="IN/Share" data-url="https://shielded-tundra-32718.herokuapp.com"></script>
+        <div style="text-align: center">
+            <form action="https://shielded-tundra-32718.herokuapp.com/" id="replay">
+                <input type="submit" value="Play Again" class="button">
+            </form>
         </div>
 
     </div>
