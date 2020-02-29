@@ -219,4 +219,5 @@ def leaderboard(request, score):
         "score": score
     }
     return render(request, 'version2/leaderboard.html', context)
-    
+
+
