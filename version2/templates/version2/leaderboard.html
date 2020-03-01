@@ -371,60 +371,60 @@
 
 <script>
 
-    function Quartile(data, q) {
-        data = Array_Sort_Numbers(data);
-        var pos = ((data.length) - 1) * q;
-        var base = Math.floor(pos);
-        var rest = pos - base;
-        if ((data[base + 1] !== undefined)) {
-            return data[base] + rest * (data[base + 1] - data[base]);
-        } else {
-            return data[base];
-        }
-    }
-
-    function Array_Sort_Numbers(inputarray) {
-        return inputarray.sort(function (a, b) {
-            return a - b;
-        });
-    }
-
-    var allscore = [];
-    {% for datum in score_dict %}
+    {#function Quartile(data, q) {#}
+    {#    data = Array_Sort_Numbers(data);#}
+    {#    var pos = ((data.length) - 1) * q;#}
+    {#    var base = Math.floor(pos);#}
+    {#    var rest = pos - base;#}
+    {#    if ((data[base + 1] !== undefined)) {#}
+    {#        return data[base] + rest * (data[base + 1] - data[base]);#}
+    {#    } else {#}
+    {#        return data[base];#}
+    {#    }#}
+    {#}#}
+    {##}
+    {#function Array_Sort_Numbers(inputarray) {#}
+    {#    return inputarray.sort(function (a, b) {#}
+    {#        return a - b;#}
+    {#    });#}
+    {#}#}
+    {##}
+    {#var allscore = [];#}
+    {#{% for datum in score_dict %}#}
         {#var s = {{ datum.0 }}#}
         {#    var freq = {{ datum.1 }}#}
-        for (let i = 0; i < {{ datum.1 }}; i++) {
-            allscore.push({{ datum.0 }})
-        }
-    {% endfor %}
-
-    var per20 = Quartile(allscore, 0.2);
-    var per40 = Quartile(allscore, 0.4);
-    var per60 = Quartile(allscore, 0.6);
-    var per80 = Quartile(allscore, 0.8);
+    {#    for (let i = 0; i < {{ datum.1 }}; i++) {#}
+    {#        allscore.push({{ datum.0 }})#}
+    {#    }#}
+    {#{% endfor %}#}
+    {##}
+    {#var per20 = Quartile(allscore, 0.2);#}
+    {#var per40 = Quartile(allscore, 0.4);#}
+    {#var per60 = Quartile(allscore, 0.6);#}
+    {#var per80 = Quartile(allscore, 0.8);#}
 
 
     function Check_Quartile(score) {
-        if (score > per80) {
+        if (score > 160) {
             document.getElementById("badge").src = "{% static 'myapp/eaglebadge.png' %}"
             document.getElementById("percentile").innerText = "Google Conqueror!"
-            document.getElementById("text").innerHTML = "You exceeded <span style=\"color: green; \">80%</span> of other players! Your eyes can peer through Google AI. It is hard to find others like you."
-        } else if (score > per60) {
+            document.getElementById("text").innerText = "Your eyes can peer through Google AI. It is hard to find others like you."
+        } else if (score > 120) {
             document.getElementById("badge").src = "{% static 'myapp/owlbadge.png' %}"
             document.getElementById("percentile").innerText = "You almost beat Google!"
-            document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">60%</span> of other players! Great vision my fellow owls. Keep it going."
-        } else if (score > per40) {
+            document.getElementById("text").innerText = "Great vision my fellow owls. Keep it going."
+        } else if (score > 80) {
             document.getElementById("badge").src = "{% static 'myapp/goatbadge.png' %}"
             document.getElementById("percentile").innerText = "Not bad for Google’s prey! "
-            document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">40%</span>  of other players! Your eyes can peer through Google AI. It is hard to find others like you."
-        } else if (score > per20) {
+            document.getElementById("text").innerText = "Your eyes can peer through Google AI. It is hard to find others like you."
+        } else if (score > 40) {
             document.getElementById("badge").src = "{% static 'myapp/batbadge.png' %}"
             document.getElementById("percentile").innerText = "You are blind as a bat!"
-            document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">20%</span>  of other players! Google knocked you down!"
+            document.getElementById("text").innerText = "Google knocked you down!"
         } else {
             document.getElementById("badge").src = "{% static 'myapp/molebadge.png' %}"
             document.getElementById("percentile").innerText = "Google knocked you down!"
-            document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">10%</span>  of other players! It’s alright little friend, Go get some glasses and try again"
+            document.getElementById("text").innerText = "It’s alright little friend, Go get some glasses and try again."
         }
     }
 
