@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Kalam&display=swap');
+
+        .feedback {
+            padding-top: 350px;
+            text-align: center;
+            font-family: 'Kalam', cursive;
+        }
+
+        #icon {
+            height: 100px;
+            length: 100px;
+        }
+
+        #badge {
+            height: 300px;
+            length: 300px;
+        }
+
+        .five_badges {
+            height: 130px;
+            length: 130px;
+        }
+
+        .icon-credit {
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            font-family: 'Kalam', cursive;
+        }
+
+        #text, #next_badge {
+            font-size: 60px;
+        }
+
+        #score {
+            font-size: 40px;
+        }
+
+        @media (min-width: 1000px) {
+            .feedback {
+                padding-top: 100px;
+            }
+
+            #icon {
+                height: 50px;
+                length: 50px;
+            }
+
+            #badge {
+                height: 150px;
+                length: 150px;
+            }
+
+            .five_badges {
+                height: 50px;
+                length: 50px;
+            }
+
+            #text, #next_badge {
+                font-size: 30px;
+            }
+
+            #score {
+                font-size: 20px;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="feedback">
+    <img id="icon">
+    <h1 id="text">{{ feedback }}</h1>
+    <h1 id="score"></h1>
+</div>
+
+
+<div class="icon-credit">
+    Icons made by <a href="https://www.flaticon.com/authors/pixelmeetup" title="Pixelmeetup">Pixelmeetup</a> and <a
+        href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a
+        href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+</div>
+</body>
+<form action="../../../../home{{ q_id }}/{{ respondent_id }}/" id="main_form" method="get">
+</form>
+<script>
+
+    {% load staticfiles %}
+
+    function s() {
+        document.getElementById("main_form").submit();
+    }
+
+
+    let feedback = document.getElementById("text").innerText
+    if (feedback === "CORRECT") {
+        document.getElementById("icon").src = "{% static 'myapp/correct.svg' %}"
+        document.getElementById("text").innerHTML = "<span style=\"color: green; \">CORRECT +10</span>"
+        document.getElementById("score").innerText = "CURRENT SCORE: " +
+        {{ current_score }}
+    } else if (feedback === "INCORRECT") {
+        document.getElementById("icon").src = "{% static 'myapp/wrong.svg' %}"
+        document.getElementById("text").innerHTML = "<span style=\"color: red; \">INCORRECT -5</span>"
+        document.getElementById("score").innerText = "CURRENT SCORE: " +
+        {{ current_score }}
+    } else {
+        document.getElementById("icon").src = "{% static 'myapp/right-arrow.svg' %}"
+        document.getElementById("text").innerHTML = "<span style=\"color: orange; \">SKIPPED +0</span>"
+        document.getElementById("score").innerText = "CURRENT SCORE: " +
+        {{ current_score }}
+    }
+
+    setTimeout(s, 1000);
+</script>
+</html>
