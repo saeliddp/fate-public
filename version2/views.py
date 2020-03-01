@@ -89,7 +89,10 @@ def feedback(request, q_id, respondent_id, correct, current_score):
     else:
         context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "SKIPPED", "current_score": current_score}
     
-    return render(request, 'version2/feedback.html', context)
+    if (q_id - 1) % 5 == 0:
+        return render(request, 'version2/feedback5.html', context)
+    else:
+        return render(request, 'version2/feedback.html', context)
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def redir(request, q_id, respondent_id):
