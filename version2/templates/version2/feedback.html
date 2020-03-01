@@ -101,70 +101,73 @@
 
     {% load staticfiles %}
 
-    function Quartile(data, q) {
-        data = Array_Sort_Numbers(data);
-        var pos = ((data.length) - 1) * q;
-        var base = Math.floor(pos);
-        var rest = pos - base;
-        if ((data[base + 1] !== undefined)) {
-            return data[base] + rest * (data[base + 1] - data[base]);
-        } else {
-            return data[base];
-        }
-    }
-
-    function Array_Sort_Numbers(inputarray) {
-        return inputarray.sort(function (a, b) {
-            return a - b;
-        });
-    }
-
-    var allscore = [];
-    {% for datum in score_dict %}
+    {#function Quartile(data, q) {#}
+    {#    data = Array_Sort_Numbers(data);#}
+    {#    var pos = ((data.length) - 1) * q;#}
+    {#    var base = Math.floor(pos);#}
+    {#    var rest = pos - base;#}
+    {#    if ((data[base + 1] !== undefined)) {#}
+    {#        return data[base] + rest * (data[base + 1] - data[base]);#}
+    {#    } else {#}
+    {#        return data[base];#}
+    {#    }#}
+    {#}#}
+    {##}
+    {#function Array_Sort_Numbers(inputarray) {#}
+    {#    return inputarray.sort(function (a, b) {#}
+    {#        return a - b;#}
+    {#    });#}
+    {#}#}
+    {##}
+    {#var allscore = [];#}
+    {#{% for datum in score_dict %}#}
         {#var s = {{ datum.0 }}#}
         {#    var freq = {{ datum.1 }}#}
-        for (let i = 0; i < {{ datum.1 }}; i++) {
-            allscore.push({{ datum.0 }})
-        }
-    {% endfor %}
-
-    var per20 = Quartile(allscore, 0.2);
-    var per40 = Quartile(allscore, 0.4);
-    var per60 = Quartile(allscore, 0.6);
-    var per80 = Quartile(allscore, 0.8);
+    {#    for (let i = 0; i < {{ datum.1 }}; i++) {#}
+    {#        allscore.push({{ datum.0 }})#}
+    {#    }#}
+    {#{% endfor %}#}
+    {##}
+    {#var per20 = Quartile(allscore, 0.2);#}
+    {#var per40 = Quartile(allscore, 0.4);#}
+    {#var per60 = Quartile(allscore, 0.6);#}
+    {#var per80 = Quartile(allscore, 0.8);#}
 
 
     function Check_Quartile(score) {
-        if (score > per80) {
+        if (score > 160) {
             document.getElementById("badge").src = "{% static 'myapp/eaglebadge.png' %}"
-            document.getElementById("next_badge").innerText = "You've earned the gold eagle badge! Keep going!"
+            document.getElementById("next_badge").innerHTML = "You've earned the gold eagle badge! Keep it going!"
             document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
             document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
             document.getElementById("b3").src = "{% static 'myapp/goatbadge.png' %}"
             document.getElementById("b4").src = "{% static 'myapp/owlbadge.png' %}"
             document.getElementById("b5").src = "{% static 'myapp/eaglebadge.png' %}"
-        } else if (score > per60) {
+        } else if (score > 120) {
             document.getElementById("badge").src = "{% static 'myapp/owlbadge.png' %}"
-            var score_diff = per80 - score
-            document.getElementById("next_badge").innerText = "You are ", score_diff, " points away from the next badge"
+            var score_diff = (160 - score).toString()
+            var text = "You are " +  score_diff + " points away from the next badge."
+            document.getElementById("next_badge").innerText = text
             document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
             document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
             document.getElementById("b3").src = "{% static 'myapp/goatbadge.png' %}"
             document.getElementById("b4").src = "{% static 'myapp/owlbadge.png' %}"
             document.getElementById("b5").src = "{% static 'myapp/bw/eaglebadge_bw.png' %}"
-        } else if (score > per40) {
+        } else if (score > 80) {
             document.getElementById("badge").src = "{% static 'myapp/goatbadge.png.png' %}"
-            var score_diff = per60 - score
-            document.getElementById("next_badge").innerText = "You are ", score_diff, " points away from the next badge"
+            var score_diff = (120 - score).toString()
+            var text = "You are " +  score_diff + " points away from the next badge."
+            document.getElementById("next_badge").innerText = text
             document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
             document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
             document.getElementById("b3").src = "{% static 'myapp/goatbadge.png' %}"
             document.getElementById("b4").src = "{% static 'myapp/bw/owlbadge_bw.png' %}"
             document.getElementById("b5").src = "{% static 'myapp/bw/eaglebadge_bw.png' %}"
-        } else if (score > per20) {
+        } else if (score > 40) {
             document.getElementById("badge").src = "{% static 'myapp/batbadge.png' %}"
-            var score_diff = per40 - score
-            document.getElementById("next_badge").innerText = "You are ", score_diff, " points away from the next badge"
+            var score_diff = (80 - score).toString()
+            var text = "You are " +  score_diff + " points away from the next badge."
+            document.getElementById("next_badge").innerText = text
             document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
             document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
             document.getElementById("b3").src = "{% static 'myapp/bw/goatbadge_bw.png' %}"
@@ -172,8 +175,9 @@
             document.getElementById("b5").src = "{% static 'myapp/bw/eaglebadge_bw.png' %}"
         } else {
             document.getElementById("badge").src = "{% static 'myapp/molebadge.png' %}"
-            var score_diff = per20 - score
-            document.getElementById("next_badge").innerText = "You are ", score_diff, " points away from the next badge"
+            var score_diff = (40 - score).toString()
+            var text = "You are " +  score_diff + " points away from the next badge."
+            document.getElementById("next_badge").innerText = text
             document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
             document.getElementById("b2").src = "{% static 'myapp/bw/batbadge_bw.png' %}"
             document.getElementById("b3").src = "{% static 'myapp/bw/goatbadge_bw.png' %}"
@@ -182,7 +186,7 @@
         }
     }
 
-    Check_Quartile({{ current_scorescore }})
+    Check_Quartile({{ current_score }})
 
 
     function s() {
@@ -209,6 +213,7 @@
         {{ current_score }}
     }
 
-    setTimeout(s, 2000);
+    setTimeout(s, 2000)
+
 </script>
 </html>
