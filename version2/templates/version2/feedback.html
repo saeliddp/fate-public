@@ -42,7 +42,7 @@
 
         @media (min-width: 1000px) {
             .feedback {
-                padding-top: 150px;
+                padding-top: 100px;
             }
 
             #icon {
@@ -136,45 +136,45 @@
 
     function Check_Quartile(score) {
         if (score > per80) {
-            document.getElementById("badge").src = "{% static 'myapp/eaglebadge.png' %}"
+            document.getElementById("badge").src = "{% static 'myapp/eaglebadge1.png' %}"
             document.getElementById("next_badge").innerText = "You've earned the gold eagle badge! Keep going!"
-            document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
-            document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
-            document.getElementById("b3").src = "{% static 'myapp/goatbadge.png' %}"
-            document.getElementById("b4").src = "{% static 'myapp/owlbadge.png' %}"
-            document.getElementById("b5").src = "{% static 'myapp/eaglebadge.png' %}"
+            document.getElementById("b1").src = "{% static 'myapp/molebadge2.png' %}"
+            document.getElementById("b2").src = "{% static 'myapp/batbadge2.png' %}"
+            document.getElementById("b3").src = "{% static 'myapp/goatbadge2.png' %}"
+            document.getElementById("b4").src = "{% static 'myapp/owlbadge2.png' %}"
+            document.getElementById("b5").src = "{% static 'myapp/eaglebadge2.png' %}"
         } else if (score > per60) {
-            document.getElementById("badge").src = "{% static 'myapp/owlbadge.png' %}"
+            document.getElementById("badge").src = "{% static 'myapp/owlbadge1.png' %}"
             var score_diff = per80 - score
             document.getElementById("next_badge").innerText = "You are ", score_diff, " points away from the next badge"
-            document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
-            document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
-            document.getElementById("b3").src = "{% static 'myapp/goatbadge.png' %}"
-            document.getElementById("b4").src = "{% static 'myapp/owlbadge.png' %}"
+            document.getElementById("b1").src = "{% static 'myapp/molebadge2.png' %}"
+            document.getElementById("b2").src = "{% static 'myapp/batbadge2.png' %}"
+            document.getElementById("b3").src = "{% static 'myapp/goatbadge2.png' %}"
+            document.getElementById("b4").src = "{% static 'myapp/owlbadge2.png' %}"
             document.getElementById("b5").src = "{% static 'myapp/bw/eaglebadge_bw.png' %}"
         } else if (score > per40) {
-            document.getElementById("badge").src = "{% static 'myapp/goatbadge.png.png' %}"
+            document.getElementById("badge").src = "{% static 'myapp/goatbadge1.png' %}"
             var score_diff = per60 - score
             document.getElementById("next_badge").innerText = "You are ", score_diff, " points away from the next badge"
-            document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
-            document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
-            document.getElementById("b3").src = "{% static 'myapp/goatbadge.png' %}"
+            document.getElementById("b1").src = "{% static 'myapp/molebadge2.png' %}"
+            document.getElementById("b2").src = "{% static 'myapp/batbadge2.png' %}"
+            document.getElementById("b3").src = "{% static 'myapp/goatbadge2.png' %}"
             document.getElementById("b4").src = "{% static 'myapp/bw/owlbadge_bw.png' %}"
             document.getElementById("b5").src = "{% static 'myapp/bw/eaglebadge_bw.png' %}"
         } else if (score > per20) {
-            document.getElementById("badge").src = "{% static 'myapp/batbadge.png' %}"
+            document.getElementById("badge").src = "{% static 'myapp/batbadge1.png' %}"
             var score_diff = per40 - score
             document.getElementById("next_badge").innerText = "You are ", score_diff, " points away from the next badge"
-            document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
-            document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
+            document.getElementById("b1").src = "{% static 'myapp/molebadge2.png' %}"
+            document.getElementById("b2").src = "{% static 'myapp/batbadge2.png' %}"
             document.getElementById("b3").src = "{% static 'myapp/bw/goatbadge_bw.png' %}"
             document.getElementById("b4").src = "{% static 'myapp/bw/owlbadge_bw.png' %}"
             document.getElementById("b5").src = "{% static 'myapp/bw/eaglebadge_bw.png' %}"
         } else {
-            document.getElementById("badge").src = "{% static 'myapp/molebadge.png' %}"
+            document.getElementById("badge").src = "{% static 'myapp/molebadge1.png' %}"
             var score_diff = per20 - score
             document.getElementById("next_badge").innerText = "You are ", score_diff, " points away from the next badge"
-            document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
+            document.getElementById("b1").src = "{% static 'myapp/molebadge2.png' %}"
             document.getElementById("b2").src = "{% static 'myapp/bw/batbadge_bw.png' %}"
             document.getElementById("b3").src = "{% static 'myapp/bw/goatbadge_bw.png' %}"
             document.getElementById("b4").src = "{% static 'myapp/bw/owlbadge_bw.png' %}"
@@ -182,8 +182,7 @@
         }
     }
 
-    Check_Quartile({{ current_scorescore }})
-
+    Check_Quartile({{ current_score }})
 
     function s() {
         document.getElementById("main_form").submit();
@@ -191,7 +190,6 @@
 
 
     let feedback = document.getElementById("text").innerText
-    console.log(feedback)
     if (feedback === "CORRECT") {
         document.getElementById("icon").src = "{% static 'myapp/correct.svg' %}"
         document.getElementById("text").innerHTML = "<span style=\"color: green; \">CORRECT +10</span>"

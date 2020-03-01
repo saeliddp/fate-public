@@ -159,9 +159,9 @@
 
         .form-radio:checked::before {
             position: absolute;
-            font: 13px/1 'Open Sans', sans-serif;
-            left: 11px;
-            top: 7px;
+            font: 50px 'Open Sans', sans-serif;
+            left: 23px;
+            top: 4px;
             content: '\02143';
             color: white;
             transform: rotate(40deg);
@@ -199,12 +199,19 @@
         }
 
         @media (min-width: 1000px) {
+
+            .form-radio:checked::before {
+                font: 13px 'Open Sans', sans-serif;
+                left: 10px;
+                top: 5px;
+            }
+
             .submit {
-            padding-top: 0px;
+                padding-top: 0px;
             }
 
             .container-fluid {
-            padding-top: 170px;
+                padding-top: 170px;
             }
 
             .header {

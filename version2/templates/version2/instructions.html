@@ -12,7 +12,12 @@
             margin: 0px;
             text-align: center;
             color: #63aba8;
+            font-size: 20px;
             font-family: "verdana";
+        }
+
+        .header1{
+            font-size: 70px;
         }
 
         p {
@@ -53,7 +58,7 @@
         }
 
 
-        img {
+        #demo {
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -63,16 +68,28 @@
             background-color: red;
         }
 
-        .rules p {
+        .index {
+            height: 60px;
+        }
+
+        .paragraph {
+            margin: 40px;
+        }
+
+        .rules text {
             padding-top: 5px;
             font-size: 14px;
+            padding-left: 5px;
+            font-family: "verdana";
+            color: #565656;
         }
 
         .rules h2 {
-            font-size: 15px;
-            color: #63aba8;
+            font-size: 20px;
+            color: #565656;
             font-family: "verdana";
-            padding-left: 30px;
+            padding-left: 40px;
+            padding-top: 40px;
         }
 
         @media (min-width: 1000px) {
@@ -82,6 +99,15 @@
                 background-image: url("{% static 'myapp/08.png' %}");;
             }
 
+            .header1 {
+                padding-top: 30px;
+                font-size: 50px;
+            }
+
+            .index {
+                height: 25px;
+            }
+
             .block {
                 background: white;
                 margin: 80px 220px;
@@ -89,13 +115,21 @@
                 border: 2px solid #cbcbcb;
             }
 
-            .rules p {
+            .rules text {
                 font-size: 15px;
+            }
+
+            .paragraph {
+                margin: 10px 90px;
             }
 
             .rules h2 {
                 font-size: 20px;
-                padding-left: 100px;
+                padding-left: 90px;
+            }
+
+            #demo {
+                margin-top: 40px;
             }
 
             .button {
@@ -113,36 +147,45 @@
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="Google or Not?"/>
     <meta property="og:description" content="Test how well you know Google!"/>
-    <meta property="og:image" content="https://shielded-tundra-32718.herokuapp.com/static/myapp/simple_logo.jpg"/>
+    <meta property="og:image" content="https://shielded-tundra-32718.herokuapp.com/static/myapp/logo2.png"/>
 	<meta property="og:image:type" content="image/jpg"/>
 	
 </head>
 <body>
 
 <div class="block">
-    <h1 class="header">Google or Not?</h1>
+    <h1 class="header header1">Google or Not?</h1>
     <h1 class="header">Test How Well You Know Google!</h1>
-
+    {% load staticfiles %}
     <div class="rules">
         <h2>How to Play:</h2>
-        <p>1. You will be shown <span style="color: blue; ">two sets of results</span> for each search term. You will
+        <div class="paragraph">
+        <img class="index" src="{% static 'myapp/1.png' %}" alt="1">
+        <text>You will be shown <span style="color: blue; ">two sets of results</span> for each search term. You will
             have <span style="color: blue; ">30 seconds</span> to guess which side is
-            from Google. </p>
-        <p>2. If you get it <span style="color: green; ">right</span>, you will earn <span style="color: green; ">10 points</span>.
-            For being <span style="color: red; ">wrong</span>, you lose <span style="color: red; ">5 points</span></p>
-        <p>3. If you make <span style="color: orange; ">no selection</span> after 30 seconds, you will earn <span
-                style="color: orange; ">0 points</span>
-        <p>4. You will then be directed to the next pair of results for a new search term</p>
-        <p>5. There will be <span style="color: blue; ">20 rounds</span>. Good luck! </p>
-        <p>Here is what the game will look like:</p>
+            from Google. </text>
+        </div>
+        <div class="paragraph">
+        <img class="index" src="{% static 'myapp/2.png' %}" alt="2">
+        <text>If you get it <span style="color: green; ">right</span>, you will earn <span style="color: green; ">10 points</span>.
+            For being <span style="color: red; ">wrong</span>, you lose <span style="color: red; ">5 points</span></text>
+        </div>
+        <div class="paragraph">
+        <img class="index" src="{% static 'myapp/3.png' %}" alt="3">
+        <text>If you make <span style="color: orange; ">no selection</span> after 30 seconds, you will earn <span
+                style="color: orange; ">0 points</span></text>
+        </div>
+        <div class="paragraph">
+        <img class="index" src="{% static 'myapp/4.png' %}" alt="4">
+        <text>There will be <span style="color: blue; ">20 rounds</span>. Good luck!</text>
+        </div>
     </div>
 
-    {% load staticfiles %}
     {#<img id="demo" src="{% static 'myapp/demo_phone.png' %}" alt="demo">#}
     <picture>
         <source media="(min-width: 1000px)" srcset="{% static 'myapp/demo2.jpg' %}">
         <source media="(min-width: 480px)" srcset="{% static 'myapp/demo_phone.png' %}">
-        <img src="OtherImage.png" alt="IfItDoesntMatchAnyMedia">
+        <img id="demo" src="OtherImage.png" alt="IfItDoesntMatchAnyMedia">
     </picture>
 
     <h3></h3>

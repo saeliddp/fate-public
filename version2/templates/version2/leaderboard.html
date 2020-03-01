@@ -122,7 +122,7 @@
         }
 
         .share-block {
-            text-align: center;
+            align-items: center;
             margin-bottom: 60px;
         }
 
@@ -153,6 +153,14 @@
             cursor: pointer;
             margin-bottom: 20px;
             border-radius: 15px;
+        }
+
+        #twitter-widget-0 {
+            margin-bottom: -10px;
+        }
+
+        #twitter-widget-1 {
+            margin-bottom: -10px;
         }
 
 
@@ -221,15 +229,23 @@
                 width: 45%;
                 padding-left: 15%;
             }
+
+            #twitter-widget-0 {
+                margin-bottom: -4px;
+            }
+
+            #twitter-widget-1 {
+                margin-bottom: -4px;
+            }
         }
 
     </style>
 
-    <meta property="og:url" content="https://shielded-tundra-32718.herokuapp.com"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="Google or Not?"/>
-    <meta property="og:description" content="Some description"/>
-    <meta property="og:image" content="https://shielded-tundra-32718.herokuapp.com/static/myapp/gornot.png"/>
+{#    <meta property="og:url" content="https://shielded-tundra-32718.herokuapp.com"/>#}
+{#    <meta property="og:type" content="website"/>#}
+{#    <meta property="og:title" content="Google or Not?"/>#}
+{#    <meta property="og:description" content="Some description"/>#}
+{#    <meta property="og:image" content="https://shielded-tundra-32718.herokuapp.com/static/myapp/gornot.png"/>#}
 
     <title>Do you Google?</title>
 </head>
@@ -268,19 +284,18 @@
         }(document, 'script', 'facebook-jssdk'));</script>
 
         <!-- Your share button code -->
-        <div class="shares">
             <div class="fb-share-button"
                  data-href="https://shielded-tundra-32718.herokuapp.com"
                  data-layout="button">
             </div>
 
             <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
-               data-url="https://shielded-tundra-32718.herokuapp.com" data-show-count="false"> Tweet </a>
+               data-text="&#39;Google or Not?&#39; Play a game and find out!"
+               data-url="https://shielded-tundra-32718.herokuapp.com" data-show-count="false">Tweet</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
             <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
             <script type="IN/Share" data-url="https://shielded-tundra-32718.herokuapp.com"></script>
-        </div>
 
     </div>
 
@@ -329,238 +344,237 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
 
-            <!-- Your share button code -->
-            <div class="shares">
-                <div class="fb-share-button"
-                     data-href="https://shielded-tundra-32718.herokuapp.com"
-                     data-layout="button">
-                </div>
-
-                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
-                   data-url="https://shielded-tundra-32718.herokuapp.com" data-show-count="false"> Tweet </a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-                <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-                <script type="IN/Share" data-url="https://shielded-tundra-32718.herokuapp.com"></script>
+        <!-- Your share button code -->
+            <div class="fb-share-button"
+                 data-href="https://shielded-tundra-32718.herokuapp.com"
+                 data-layout="button">
             </div>
 
-        </div>
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+               data-text="&#39;Google or Not?&#39; Play a game and find out!"
+               data-url="https://shielded-tundra-32718.herokuapp.com" data-show-count="false">Tweet</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-        <div style="text-align: center">
-            <form action="https://shielded-tundra-32718.herokuapp.com/" id="replay">
-                <input type="submit" value="Play Again" class="button">
-            </form>
-        </div>
+            <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+            <script type="IN/Share" data-url="https://shielded-tundra-32718.herokuapp.com"></script>
 
     </div>
 
+    <div style="text-align: center">
+        <form action="https://shielded-tundra-32718.herokuapp.com/" id="replay">
+            <input type="submit" value="Play Again" class="button">
+        </form>
+    </div>
 
-    <script>
-
-        function Quartile(data, q) {
-            data = Array_Sort_Numbers(data);
-            var pos = ((data.length) - 1) * q;
-            var base = Math.floor(pos);
-            var rest = pos - base;
-            if ((data[base + 1] !== undefined)) {
-                return data[base] + rest * (data[base + 1] - data[base]);
-            } else {
-                return data[base];
-            }
-        }
-
-        function Array_Sort_Numbers(inputarray) {
-            return inputarray.sort(function (a, b) {
-                return a - b;
-            });
-        }
-
-        var allscore = [];
-        {% for datum in score_dict %}
-            {#var s = {{ datum.0 }}#}
-            {#    var freq = {{ datum.1 }}#}
-            for (let i = 0; i < {{ datum.1 }}; i++) {
-                allscore.push({{ datum.0 }})
-            }
-        {% endfor %}
-
-        var per20 = Quartile(allscore, 0.2);
-        var per40 = Quartile(allscore, 0.4);
-        var per60 = Quartile(allscore, 0.6);
-        var per80 = Quartile(allscore, 0.8);
+</div>
 
 
-        function Check_Quartile(score) {
-            if (score > per80) {
-                document.getElementById("badge").src = "{% static 'myapp/eaglebadge.png' %}"
-                document.getElementById("percentile").innerText = "Google Conqueror!"
-                document.getElementById("text").innerHTML = "You exceeded <span style=\"color: green; \">80%</span> of other players! Your eyes can peer through Google AI. It is hard to find others like you."
-            } else if (score > per60) {
-                document.getElementById("badge").src = "{% static 'myapp/owlbadge.png' %}"
-                document.getElementById("percentile").innerText = "You almost beat Google!"
-                document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">60%</span> of other players! Great vision my fellow owls. Keep it going."
-            } else if (score > per40) {
-                document.getElementById("badge").src = "{% static 'myapp/goatbadge.png' %}"
-                document.getElementById("percentile").innerText = "Not bad for Google’s prey! "
-                document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">40%</span>  of other players! Your eyes can peer through Google AI. It is hard to find others like you."
-            } else if (score > per20) {
-                document.getElementById("badge").src = "{% static 'myapp/batbadge.png' %}"
-                document.getElementById("percentile").innerText = "You are blind as a bat!"
-                document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">20%</span>  of other players! Google knocked you down!"
-            } else {
-                document.getElementById("badge").src = "{% static 'myapp/molebadge.png' %}"
-                document.getElementById("percentile").innerText = "Google knocked you down!"
-                document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">10%</span>  of other players! It’s alright little friend, Go get some glasses and try again"
-            }
-        }
+<script>
 
-        Check_Quartile({{ score }})
-
-        var newlist = []
-        var current_score = []
-        {% for datum in score_dict %}
-            {% if datum.0 != score %}
-                var xv = {{ datum.0 }}
-                var yv = {{ datum.1 }}
-                var point = {x: xv, y: yv}
-                newlist.push(point)
-            {% endif %}
-
-            {% if datum.0 == score %}
-                var xv2 = {{ datum.0 }}
-                var yv2 = {{ datum.1 }}
-                var point2 = {x: xv2, y: yv2}
-                current_score.push(point2)
-            {% endif %}
-        {% endfor %}
-
-        var ctx = document.getElementById('myChart').getContext('2d');
-        if ($(window).width() < 1000) {
-            var myChart = new Chart(ctx, {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'Other Participants’ Scores',
-                        data: newlist,
-                        pointBackgroundColor: 'rgb(255,192,0)',
-                        borderColor: 'rgb(255,192,2)',
-                        pointRadius: 10
-                    },
-                        {
-                            label: 'Your Score',
-                            data: current_score,
-                            pointBackgroundColor: 'rgb(0,255,52)',
-                            borderColor: 'rgb(0,255,53)',
-                            pointRadius: 10
-                        }]
-                },
-                options: {
-                    legend: {
-                        labels: {
-                            fontColor: 'black',
-                            fontSize: 30
-                        }
-                    },
-
-                    scales: {
-                        xAxes: [{
-                            gridLines: {
-                                color: 'rgb(153,153,153)'
-                            },
-                            ticks: {
-                                fontColor: 'black',
-                                fontSize: 20
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Score',
-                                fontColor: 'rgb(153,153,153)',
-                                fontSize: 30
-                            }
-                        }],
-                        yAxes: [{
-                            gridLines: {
-                                color: 'rgb(153,153,153)'
-                            },
-                            ticks: {
-                                fontColor: 'black',
-                                fontSize: 20
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Frequency',
-                                fontColor: 'rgb(153,153,153)',
-                                fontSize: 30
-                            }
-                        }]
-                    }
-
-                }
-            })
+    function Quartile(data, q) {
+        data = Array_Sort_Numbers(data);
+        var pos = ((data.length) - 1) * q;
+        var base = Math.floor(pos);
+        var rest = pos - base;
+        if ((data[base + 1] !== undefined)) {
+            return data[base] + rest * (data[base + 1] - data[base]);
         } else {
-            var myChart = new Chart(ctx, {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'Other Participants’ Scores',
-                        data: newlist,
-                        pointBackgroundColor: 'rgb(255,192,0)',
-                        borderColor: 'rgb(255,192,2)',
-                        pointRadius: 6
-                    },
-                        {
-                            label: 'Your Score',
-                            data: current_score,
-                            pointBackgroundColor: 'rgb(0,255,52)',
-                            borderColor: 'rgb(0,255,53)',
-                            pointRadius: 6
-                        }]
+            return data[base];
+        }
+    }
+
+    function Array_Sort_Numbers(inputarray) {
+        return inputarray.sort(function (a, b) {
+            return a - b;
+        });
+    }
+
+    var allscore = [];
+    {% for datum in score_dict %}
+        {#var s = {{ datum.0 }}#}
+        {#    var freq = {{ datum.1 }}#}
+        for (let i = 0; i < {{ datum.1 }}; i++) {
+            allscore.push({{ datum.0 }})
+        }
+    {% endfor %}
+
+    var per20 = Quartile(allscore, 0.2);
+    var per40 = Quartile(allscore, 0.4);
+    var per60 = Quartile(allscore, 0.6);
+    var per80 = Quartile(allscore, 0.8);
+
+
+    function Check_Quartile(score) {
+        if (score > per80) {
+            document.getElementById("badge").src = "{% static 'myapp/eaglebadge.png' %}"
+            document.getElementById("percentile").innerText = "Google Conqueror!"
+            document.getElementById("text").innerHTML = "You exceeded <span style=\"color: green; \">80%</span> of other players! Your eyes can peer through Google AI. It is hard to find others like you."
+        } else if (score > per60) {
+            document.getElementById("badge").src = "{% static 'myapp/owlbadge.png' %}"
+            document.getElementById("percentile").innerText = "You almost beat Google!"
+            document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">60%</span> of other players! Great vision my fellow owls. Keep it going."
+        } else if (score > per40) {
+            document.getElementById("badge").src = "{% static 'myapp/goatbadge.png' %}"
+            document.getElementById("percentile").innerText = "Not bad for Google’s prey! "
+            document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">40%</span>  of other players! Your eyes can peer through Google AI. It is hard to find others like you."
+        } else if (score > per20) {
+            document.getElementById("badge").src = "{% static 'myapp/batbadge.png' %}"
+            document.getElementById("percentile").innerText = "You are blind as a bat!"
+            document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">20%</span>  of other players! Google knocked you down!"
+        } else {
+            document.getElementById("badge").src = "{% static 'myapp/molebadge.png' %}"
+            document.getElementById("percentile").innerText = "Google knocked you down!"
+            document.getElementById("text").innerText = "You exceeded <span style=\"color: green; \">10%</span>  of other players! It’s alright little friend, Go get some glasses and try again"
+        }
+    }
+
+    Check_Quartile({{ score }})
+
+    var newlist = []
+    var current_score = []
+    {% for datum in score_dict %}
+        {% if datum.0 != score %}
+            var xv = {{ datum.0 }}
+            var yv = {{ datum.1 }}
+            var point = {x: xv, y: yv}
+            newlist.push(point)
+        {% endif %}
+
+        {% if datum.0 == score %}
+            var xv2 = {{ datum.0 }}
+            var yv2 = {{ datum.1 }}
+            var point2 = {x: xv2, y: yv2}
+            current_score.push(point2)
+        {% endif %}
+    {% endfor %}
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    if ($(window).width() < 1000) {
+        var myChart = new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Other Participants’ Scores',
+                    data: newlist,
+                    pointBackgroundColor: 'rgb(255,192,0)',
+                    borderColor: 'rgb(255,192,2)',
+                    pointRadius: 10
                 },
-                options: {
-                    legend: {
-                        labels: {
+                    {
+                        label: 'Your Score',
+                        data: current_score,
+                        pointBackgroundColor: 'rgb(0,255,52)',
+                        borderColor: 'rgb(0,255,53)',
+                        pointRadius: 10
+                    }]
+            },
+            options: {
+                legend: {
+                    labels: {
+                        fontColor: 'black',
+                        fontSize: 30
+                    }
+                },
+
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            color: 'rgb(153,153,153)'
+                        },
+                        ticks: {
                             fontColor: 'black',
                             fontSize: 20
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Score',
+                            fontColor: 'rgb(153,153,153)',
+                            fontSize: 30
                         }
-                    },
-
-                    scales: {
-                        xAxes: [{
-                            gridLines: {
-                                color: 'rgb(153,153,153)'
-                            },
-                            ticks: {
-                                fontColor: 'black',
-                                fontSize: 10
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Score',
-                                fontColor: 'rgb(153,153,153)',
-                                fontSize: 20
-                            }
-                        }],
-                        yAxes: [{
-                            gridLines: {
-                                color: 'rgb(153,153,153)'
-                            },
-                            ticks: {
-                                fontColor: 'black',
-                                fontSize: 10
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Frequency',
-                                fontColor: 'rgb(153,153,153)',
-                                fontSize: 20
-                            }
-                        }]
-                    }
-
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            color: 'rgb(153,153,153)'
+                        },
+                        ticks: {
+                            fontColor: 'black',
+                            fontSize: 20
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Frequency',
+                            fontColor: 'rgb(153,153,153)',
+                            fontSize: 30
+                        }
+                    }]
                 }
-            })
-        }
 
-    </script>
+            }
+        })
+    } else {
+        var myChart = new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Other Participants’ Scores',
+                    data: newlist,
+                    pointBackgroundColor: 'rgb(255,192,0)',
+                    borderColor: 'rgb(255,192,2)',
+                    pointRadius: 6
+                },
+                    {
+                        label: 'Your Score',
+                        data: current_score,
+                        pointBackgroundColor: 'rgb(0,255,52)',
+                        borderColor: 'rgb(0,255,53)',
+                        pointRadius: 6
+                    }]
+            },
+            options: {
+                legend: {
+                    labels: {
+                        fontColor: 'black',
+                        fontSize: 20
+                    }
+                },
+
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            color: 'rgb(153,153,153)'
+                        },
+                        ticks: {
+                            fontColor: 'black',
+                            fontSize: 10
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Score',
+                            fontColor: 'rgb(153,153,153)',
+                            fontSize: 20
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            color: 'rgb(153,153,153)'
+                        },
+                        ticks: {
+                            fontColor: 'black',
+                            fontSize: 10
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Frequency',
+                            fontColor: 'rgb(153,153,153)',
+                            fontSize: 20
+                        }
+                    }]
+                }
+
+            }
+        })
+    }
+
+</script>
 
 </body>
