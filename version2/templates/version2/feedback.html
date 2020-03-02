@@ -154,7 +154,7 @@
             document.getElementById("b4").src = "{% static 'myapp/owlbadge.png' %}"
             document.getElementById("b5").src = "{% static 'myapp/bw/eaglebadge_bw.png' %}"
         } else if (score > 80) {
-            document.getElementById("badge").src = "{% static 'myapp/goatbadge.png.png' %}"
+            document.getElementById("badge").src = "{% static 'myapp/goatbadge.png' %}"
             var score_diff = (120 - score).toString()
             var text = "You are " +  score_diff + " points away from the next badge."
             document.getElementById("next_badge").innerText = text
