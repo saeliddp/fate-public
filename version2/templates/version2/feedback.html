@@ -5,9 +5,9 @@
         @import url('https://fonts.googleapis.com/css?family=Kalam&display=swap');
 
         .feedback {
-            padding-top: 250px;
+            padding-top: 270px;
             text-align: center;
-            font-family: 'Kalam', cursive;
+            font-family: 'Lato', sans-serif;
         }
 
         #icon {
@@ -29,7 +29,7 @@
             bottom: 0;
             right: 0;
             position: absolute;
-            font-family: 'Kalam', cursive;
+            font-family: 'Lato', sans-serif;
         }
 
         #text, #next_badge {
@@ -42,7 +42,7 @@
 
         @media (min-width: 1000px) {
             .feedback {
-                padding-top: 110px;
+                padding-top: 130px;
             }
 
             #icon {
@@ -77,15 +77,17 @@
 <div class="feedback">
     <img id="badge">
     <p></p>
-    <img id="icon">
-    <h1 id="text">{{ feedback }}</h1>
-    <h1 id="score"></h1>
+{#    <img id="icon">#}
+{#    <h1 id="text">{{ feedback }}</h1>#}
+{#    <h1 id="score"></h1>#}
+    <h1 id="next_badge"></h1>
+    <h1 id="from">from the next badge</h1>
     <img class="five_badges" id="b1">
     <img class="five_badges" id="b2">
     <img class="five_badges" id="b3">
     <img class="five_badges" id="b4">
     <img class="five_badges" id="b5">
-    <h1 id="next_badge"></h1>
+
 </div>
 
 
@@ -135,38 +137,39 @@
 
 
     function Check_Quartile(score) {
-        if (score > 160) {
+        if (score >= 160) {
             document.getElementById("badge").src = "{% static 'myapp/eaglebadge.png' %}"
-            document.getElementById("next_badge").innerHTML = "You've earned the gold eagle badge! Keep it going!"
+            document.getElementById("next_badge").innerText = "You've earned the gold eagle badge!"
+            document.getElementById("from").innerText = ""
             document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
             document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
             document.getElementById("b3").src = "{% static 'myapp/goatbadge.png' %}"
             document.getElementById("b4").src = "{% static 'myapp/owlbadge.png' %}"
             document.getElementById("b5").src = "{% static 'myapp/eaglebadge.png' %}"
-        } else if (score > 120) {
+        } else if (score >= 120) {
             document.getElementById("badge").src = "{% static 'myapp/owlbadge.png' %}"
             var score_diff = (160 - score).toString()
-            var text = "You are " +  score_diff + " points away from the next badge."
+            var text = score_diff + " points away"
             document.getElementById("next_badge").innerText = text
             document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
             document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
             document.getElementById("b3").src = "{% static 'myapp/goatbadge.png' %}"
             document.getElementById("b4").src = "{% static 'myapp/owlbadge.png' %}"
             document.getElementById("b5").src = "{% static 'myapp/bw/eaglebadge_bw.png' %}"
-        } else if (score > 80) {
+        } else if (score >= 80) {
             document.getElementById("badge").src = "{% static 'myapp/goatbadge.png' %}"
             var score_diff = (120 - score).toString()
-            var text = "You are " +  score_diff + " points away from the next badge."
+            var text = score_diff + " points away"
             document.getElementById("next_badge").innerText = text
             document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
             document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
             document.getElementById("b3").src = "{% static 'myapp/goatbadge.png' %}"
             document.getElementById("b4").src = "{% static 'myapp/bw/owlbadge_bw.png' %}"
             document.getElementById("b5").src = "{% static 'myapp/bw/eaglebadge_bw.png' %}"
-        } else if (score > 40) {
+        } else if (score >= 40) {
             document.getElementById("badge").src = "{% static 'myapp/batbadge.png' %}"
             var score_diff = (80 - score).toString()
-            var text = "You are " +  score_diff + " points away from the next badge."
+            var text = score_diff + " points away"
             document.getElementById("next_badge").innerText = text
             document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
             document.getElementById("b2").src = "{% static 'myapp/batbadge.png' %}"
@@ -176,7 +179,7 @@
         } else {
             document.getElementById("badge").src = "{% static 'myapp/molebadge.png' %}"
             var score_diff = (40 - score).toString()
-            var text = "You are " +  score_diff + " points away from the next badge."
+            var text = score_diff + " points away"
             document.getElementById("next_badge").innerText = text
             document.getElementById("b1").src = "{% static 'myapp/molebadge.png' %}"
             document.getElementById("b2").src = "{% static 'myapp/bw/batbadge_bw.png' %}"
@@ -194,24 +197,23 @@
     }
 
 
-    let feedback = document.getElementById("text").innerText
-    console.log(feedback)
-    if (feedback === "CORRECT") {
-        document.getElementById("icon").src = "{% static 'myapp/correct.svg' %}"
-        document.getElementById("text").innerHTML = "<span style=\"color: green; \">CORRECT +10</span>"
-        document.getElementById("score").innerText = "CURRENT SCORE: " +
-        {{ current_score }}
-    } else if (feedback === "INCORRECT") {
-        document.getElementById("icon").src = "{% static 'myapp/wrong.svg' %}"
-        document.getElementById("text").innerHTML = "<span style=\"color: red; \">INCORRECT -5</span>"
-        document.getElementById("score").innerText = "CURRENT SCORE: " +
-        {{ current_score }}
-    } else {
-        document.getElementById("icon").src = "{% static 'myapp/right-arrow.svg' %}"
-        document.getElementById("text").innerHTML = "<span style=\"color: orange; \">SKIPPED +0</span>"
-        document.getElementById("score").innerText = "CURRENT SCORE: " +
-        {{ current_score }}
-    }
+    {#let feedback = document.getElementById("text").innerText#}
+    {#if (feedback === "CORRECT") {#}
+    {#    document.getElementById("icon").src = "{% static 'myapp/correct.svg' %}"#}
+    {#    document.getElementById("text").innerHTML = "<span style=\"color: green; \">CORRECT +10</span>"#}
+    {#    document.getElementById("score").innerText = "CURRENT SCORE: " +#}
+    {#    {{ current_score }}#}
+    {#} else if (feedback === "INCORRECT") {#}
+    {#    document.getElementById("icon").src = "{% static 'myapp/wrong.svg' %}"#}
+    {#    document.getElementById("text").innerHTML = "<span style=\"color: red; \">INCORRECT -5</span>"#}
+    {#    document.getElementById("score").innerText = "CURRENT SCORE: " +#}
+    {#    {{ current_score }}#}
+    {#} else {#}
+    {#    document.getElementById("icon").src = "{% static 'myapp/right-arrow.svg' %}"#}
+    {#    document.getElementById("text").innerHTML = "<span style=\"color: orange; \">SKIPPED +0</span>"#}
+    {#    document.getElementById("score").innerText = "CURRENT SCORE: " +#}
+    {#    {{ current_score }}#}
+    {#}#}
 
     setTimeout(s, 3000)
 

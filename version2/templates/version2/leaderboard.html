@@ -15,7 +15,7 @@
             margin: 0px;
             text-align: center;
             color: black;
-            font-family: "verdana";
+            font-family: 'Lato', sans-serif;
             font-size: 60px;
         }
 
@@ -35,8 +35,8 @@
         }
 
         #text {
-            font-family: "verdana";
-            font-size: 15px;
+            font-family: 'Lato', sans-serif;
+            font-size: 2em;
             padding-left: 50px;
             padding-right: 50px;
             color: black;
@@ -45,16 +45,15 @@
         .share {
             color: black;
             font-size: 40px;
-            font-family: "verdana";
+            font-family: 'Lato', sans-serif;
             font-weight: bold;
         }
 
         .board-title {
             text-align: center;
-            font-family: "verdana";
+            font-family: 'Lato', sans-serif;
             padding-top: 40px;
             font-size: 35px;
-            font-weight: lighter;
             color: #ffc923;
         }
 
@@ -83,14 +82,14 @@
         }
 
         .score, .name {
-            font-size: 40px;
-            padding-top: 11px;
+            font-size: 35px;
+            padding-top: 7px;
             position: relative;
             display: inline-block;
             width: 20%;
             line-height: 45px;
             text-align: center;
-            font-family: 'Kalam', cursive;
+            font-family: 'Lato', sans-serif;
         }
 
         .name {
@@ -144,7 +143,8 @@
         }
 
         .button {
-            background-color: #63aba8;
+            margin-top: 30px;
+            background-color: #2F80ED;
             border: none;
             color: white;
             padding: 30px 80px;
@@ -459,6 +459,13 @@
     <h2 class="header" id="percentile"></h2>
     <p id="text"></p>
 
+    <div style="text-align: center">
+        <form action="https://shielded-tundra-32718.herokuapp.com/" id="replay">
+            <input type="submit" value="Play Again" class="button">
+        </form>
+    </div>
+
+
 
     <div class="share-block">
         <p class="share">Share with you friends!</p>
@@ -545,13 +552,6 @@
         {#        <script type="IN/Share" data-url="https://shielded-tundra-32718.herokuapp.com"></script>#}
 
     </div>
-
-    <div style="text-align: center">
-        <form action="https://shielded-tundra-32718.herokuapp.com/" id="replay">
-            <input type="submit" value="Play Again" class="button">
-        </form>
-    </div>
-
 
     <div class="board">
         <h3 class="board-title">Leaderboard TOP 5!</h3>

@@ -14,8 +14,8 @@
             padding: 15px;
             margin: 0px;
             text-align: center;
-            color: #63aba8;
-            font-size: 60px;
+            color: #2F80ED;
+            font-size: 70px;
         }
 
         .timer {
@@ -23,7 +23,7 @@
             padding-top: 10px;
             margin: 0px;
             text-align: center;
-            color: #63aba8;
+            color: #2F80ED;
             font-size: 40px;
             padding-bottom: 20px;
         }
@@ -117,7 +117,7 @@
         }
 
         .button {
-            background-color: #63aba8;
+            background-color: #2F80ED;
             border: none;
             color: white;
             padding: 20px 300px;
@@ -135,7 +135,7 @@
         }
 
         .button:hover {
-            background-color: #4d8583;
+            background-color: #225caa;
         }
 
         .button:disabled {
@@ -175,7 +175,7 @@
         }
 
         .form-radio:checked {
-            background-color: #63aba8;
+            background-color: #2F80ED;
         }
 
         #myProgress {
@@ -187,7 +187,7 @@
         #myBar {
             width: 100%;
             height: 20px;
-            background-color: green;
+            background-color: #F2994A;
         }
 
         .top {
@@ -199,6 +199,10 @@
 
         .container-fluid {
             padding-top: 260px;
+        }
+
+        #remaining {
+            color: #333333;
         }
 
         @media (min-width: 1000px) {
@@ -330,7 +334,7 @@
         <!-- Sets up the submit button -->
         <div class="main_divs">
             <div style="text-align: center" class="submit">
-                <input type="submit" value="submit" class="button" id="submit_button" disabled>
+                <input type="submit" value="Next" class="button" id="submit_button" disabled>
                 <p class="timer" id="remaining">{{ curr_qid }}</p>
 
             </div>
