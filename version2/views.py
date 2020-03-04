@@ -90,9 +90,23 @@ def feedback(request, q_id, respondent_id, correct, current_score):
         context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "SKIPPED", "current_score": current_score}
     
     if (q_id - 1) % 5 == 0:
-        return render(request, 'version2/feedback.html', context)
+        context['is_five'] = 1
     else:
-        return render(request, 'version2/basic_feedback.html', context)
+        context['is_five'] = 0
+        
+    return render(request, 'version2/basic_feedback.html', context)
+
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def feedback_five(request, q_id, respondent_id, correct, current_score):
+    if correct == 1:
+        context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "CORRECT", "current_score": current_score}
+    elif correct == 0:
+        context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "INCORRECT", "current_score": current_score}
+    else:
+        context = {"q_id": q_id, "respondent_id": respondent_id, "feedback": "SKIPPED", "current_score": current_score}
+        
+    return render(request, 'version2/feedback.html', context)
+
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def redir(request, q_id, respondent_id):

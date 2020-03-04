@@ -92,24 +92,30 @@
 <script>
 
     {% load staticfiles %}
-
+	var correct_val = 0;
     function s() {
+		if (parseInt({{ is_five }}) == 1) {
+			document.getElementById("main_form").action = "../../../../feedback_five{{ q_id }}/{{ respondent_id }}/" + correct_val + "/{{ current_score }}/";
+		}
         document.getElementById("main_form").submit();
     }
 
 
     let feedback = document.getElementById("text").innerText
     if (feedback === "CORRECT") {
+		correct_val = 1;
         document.getElementById("icon").src = "{% static 'myapp/correct.svg' %}"
         document.getElementById("text").innerHTML = "<span style=\"color: green; \">CORRECT +10</span>"
         document.getElementById("score").innerText = "CURRENT SCORE: " +
         {{ current_score }}
     } else if (feedback === "INCORRECT") {
+		correct_val = 0;
         document.getElementById("icon").src = "{% static 'myapp/wrong.svg' %}"
         document.getElementById("text").innerHTML = "<span style=\"color: red; \">INCORRECT -5</span>"
         document.getElementById("score").innerText = "CURRENT SCORE: " +
         {{ current_score }}
     } else {
+		correct_val = 2;
         document.getElementById("icon").src = "{% static 'myapp/right-arrow.svg' %}"
         document.getElementById("text").innerHTML = "<span style=\"color: orange; \">SKIPPED +0</span>"
         document.getElementById("score").innerText = "CURRENT SCORE: " +
