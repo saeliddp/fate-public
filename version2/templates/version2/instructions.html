@@ -12,7 +12,7 @@
             margin: 0px;
             text-align: center;
             color: #63aba8;
-            font-size: 20px;
+            font-size: 2em;
             font-family: "verdana";
         }
 
@@ -24,7 +24,7 @@
             font-family: "verdana";
             color: #565656;
             text-align: left;
-            font-size: 14px;
+            font-size: 16px;
             margin: 10px 100px;
         }
 
@@ -78,7 +78,7 @@
 
         .rules text {
             padding-top: 5px;
-            font-size: 14px;
+            font-size: 1.6em;
             padding-left: 5px;
             font-family: "verdana";
             color: #565656;
@@ -90,6 +90,11 @@
             font-family: "verdana";
             padding-left: 40px;
             padding-top: 40px;
+        }
+
+        #logo {
+            width: 50%;
+            margin-left: 25%;
         }
 
         @media (min-width: 1000px) {
@@ -155,9 +160,11 @@
 <body>
 
 <div class="block">
-    <h1 class="header header1">Google or Not?</h1>
-    <h1 class="header">Test How Well You Know Google!</h1>
     {% load staticfiles %}
+{#    <h1 class="header header1">Google or Not?</h1>#}
+    <img id="logo" src="{% static 'myapp/simple_logo.jpg' %}" alt="1">
+    <p></p>
+    <h1 class="header">Test How Well You Know Google!</h1>
     <div class="rules">
         <h2>How to Play:</h2>
         <div class="paragraph">
