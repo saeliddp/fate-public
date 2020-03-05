@@ -167,36 +167,36 @@
             <div class="name">
                 <text style="color: #F2F2F2">#2</text>
                 <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
-                <text id="top2" style="color: #F2F2F2">name</text>
+                <text id="top2" style="color: #F2F2F2">{{ top_five.1.1 }}</text>
             </div>
-            <div class="score" id="score2" style="color: #F2F2F2">Score</div>
+            <div class="score" id="score2" style="color: #F2F2F2">{{ top_five.1.0 }}</div>
         </div>
 
         <div class="row">
             <div class="name">
                 <text style="color: #EBA076">#3</text>
                 <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
-                <text id="top3" style="color: #EBA076">name</text>
+                <text id="top3" style="color: #EBA076">{{ top_five.2.1 }}</text>
             </div>
-            <div class="score" id="score3" style="color: #EBA076">Score</div>
+            <div class="score" id="score3" style="color: #EBA076">{{ top_five.2.0 }}</div>
         </div>
 
         <div class="row">
             <div class="name">
                 <text style="color: #6BB4DD">#4</text>
                 <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
-                <text id="top4" style="color: #6BB4DD">name</text>
+                <text id="top4" style="color: #6BB4DD">{{ top_five.3.1 }}</text>
             </div>
-            <div class="score" id="score4" style="color: #6BB4DD">Score</div>
+            <div class="score" id="score4" style="color: #6BB4DD">{{ top_five.3.0 }}</div>
         </div>
 
         <div class="row">
             <div class="name">
                 <text style="color: #6FCF97">#5</text>
                 <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
-                <text id="top5" style="color: #6FCF97">name</text>
+                <text id="top5" style="color: #6FCF97">{{ top_five.4.1 }}</text>
             </div>
-            <div class="score" id="score5" style="color: #6FCF97">Score</div>
+            <div class="score" id="score5" style="color: #6FCF97">{{ top_five.4.0 }}</div>
         </div>
 
         {#            {% for datum in top_five %}#}

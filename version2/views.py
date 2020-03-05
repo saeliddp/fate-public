@@ -207,7 +207,12 @@ def leaderboard(request, score):
             min_topscore = ts
     
     if score >= min_topscore_val and 'username' not in request.GET:
-        context = {'score': score}
+        t5_output = []
+        topscores = TopScore.objects.all()
+        for ts in topscores:
+            t5_output.append((ts.score, ts.username))
+        t5_output.sort(reverse=True)
+        context = {'score': score, 'top_five': t5_output}
         return render(request, 'version2/username.html', context)
     elif 'username' in request.GET:
         min_topscore.score = score
