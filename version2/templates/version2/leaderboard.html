@@ -587,7 +587,7 @@
             <div class="row">
                 <div class="name">
                     <text style="color: #F2F2F2">#2</text>
-                    <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
+                    <img class="badge" id="badge2" src="{% static 'myapp/eaglebadge2.png' %}">
                     <text id="top2" style="color: #F2F2F2">{{ top_five.1.1 }}</text>
                 </div>
                 <div class="score" id="score2" style="color: #F2F2F2">{{ top_five.1.0 }}</div>
@@ -596,7 +596,7 @@
             <div class="row">
                 <div class="name">
                     <text style="color: #EBA076">#3</text>
-                    <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
+                    <img class="badge" id="badge3" src="{% static 'myapp/eaglebadge2.png' %}">
                     <text id="top3" style="color: #EBA076">{{ top_five.2.1 }}</text>
                 </div>
                 <div class="score" id="score3" style="color: #EBA076">{{ top_five.2.0 }}</div>
@@ -605,7 +605,7 @@
             <div class="row">
                 <div class="name">
                     <text style="color: #6BB4DD">#4</text>
-                    <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
+                    <img class="badge" id="badge4" src="{% static 'myapp/eaglebadge2.png' %}">
                     <text id="top4" style="color: #6BB4DD">{{ top_five.3.1 }}</text>
                 </div>
                 <div class="score" id="score4" style="color: #6BB4DD">{{ top_five.3.0 }}</div>
@@ -614,20 +614,12 @@
             <div class="row">
                 <div class="name">
                     <text style="color: #6FCF97">#5</text>
-                    <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
+                    <img class="badge" id="badge5" src="{% static 'myapp/eaglebadge2.png' %}">
                     <text id="top5" style="color: #6FCF97">{{ top_five.4.1 }}</text>
                 </div>
                 <div class="score" id="score5" style="color: #6FCF97">{{ top_five.4.0 }}</div>
             </div>
 
-            {#            {% for datum in top_five %}#}
-            {#                {% if forloop.counter < 6 %}#}
-            {#                    <div class="row">#}
-            {#                        <text class="name">{{ datum.1 }}</text>#}
-            {#                        <text class="score">{{ datum.0 }}</text>#}
-            {#                    </div>#}
-            {#                {% endif %}#}
-            {#            {% endfor %}#}
         </div>
     </div>
 
@@ -789,6 +781,27 @@
             }
 
             Check_Quartile({{ score }})
+
+            function changeBadge(score_n, badge_n) {
+                var score = document.getElementById(score_n).innerText
+                if (score < 40) {
+                    document.getElementById(badge_n).src = "{% static 'myapp/molebadge2.png' %}"
+                } else if (score < 80) {
+                    document.getElementById(badge_n).src = "{% static 'myapp/batbadge2.png' %}"
+                } else if (score < 120) {
+                    document.getElementById(badge_n).src = "{% static 'myapp/goatbadge2.png' %}"
+                } else if (score < 160) {
+                    document.getElementById(badge_n).src = "{% static 'myapp/owlbadge2.png' %}"
+                } else {
+                    document.getElementById(badge_n).src = "{% static 'myapp/eaglebadge2.png' %}"
+                }
+            }
+
+            changeBadge("score1", "badge1")
+            changeBadge("score2", "badge2")
+            changeBadge("score3", "badge3")
+            changeBadge("score4", "badge4")
+            changeBadge("score5", "badge5")
 
             var newlist = []
             var current_score = []
