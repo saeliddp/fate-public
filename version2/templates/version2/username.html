@@ -19,82 +19,67 @@
             font-family: 'Lato', sans-serif;
         }
 
+        .board {
+            background: #2d1c00;
+            padding-bottom: 50px;
+            margin-bottom: 60px;
+        }
+
         .board-title {
             text-align: center;
             font-family: 'Lato', sans-serif;
             padding-top: 40px;
-            font-size: 35px;
-            font-weight: lighter;
+            font-size: 50px;
             color: #ffc923;
         }
 
-        .mturk-id input {
-            margin-top: 5px;
-        }
-
         #container {
-            width: 70%;
+            width: 100%;
             height: auto;
             margin-left: auto;
             margin-right: auto;
             margin-top: 20px;
             border-style: solid;
             border-width: 2px;
+            border-left-width: 0px;
+            border-right-width: 0px;
             border-color: navajowhite;
-            border-radius: 8px;
-        }
-
-        .board {
-            background: #2d1c00;
-            margin-top: 100px;
-            padding-bottom: 50px;
+        {#border-radius: 8px;#}
         }
 
         .row {
             position: relative;
-            display: block;
+            display: flex;
             width: 100%;
-            height: 60px;
             border-bottom: 1px solid #AFAFAF;
         }
 
         .score, .name {
-            font-size: 35px;
-            padding-top: 11px;
-            position: relative;
-            display: inline-block;
-            width: 20%;
+            font-size: 45px;
             line-height: 45px;
-            text-align: center;
+            text-align: left;
+            padding: 20px;
             font-family: 'Lato', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .name {
-            width: 75%;
+            float: left;
         }
 
-        .row:nth-child(1) {
-            background: rgba(255, 255, 255, 0.4);
+        .score {
+            width: 20%;
+            padding: 50px;
+            position: absolute;
+            right: 0;
         }
 
-        .row:nth-child(2) {
-            background: gold;
-        }
-
-        .row:nth-child(3) {
-            background: #c0c0c0;
-        }
-
-        .row:nth-child(4) {
-            background: #cd7f32;
-        }
-
-        .row:nth-child(5) {
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        .row:nth-child(6) {
-            background: rgba(255, 255, 255, 0.4);
+        .badge {
+            width: 100px;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         input {
@@ -107,6 +92,16 @@
         @media (min-width: 1000px) {
             .text {
                 font-size: 20px;
+                padding-top: 10%;
+            }
+
+            .board {
+                width: 70%;
+                margin-left: 15%;
+            }
+
+            #container {
+                width: 60%;
             }
 
             input {
@@ -121,16 +116,20 @@
             }
 
             .board-title {
-                font-size: 20px;
+                font-size: 30px;
             }
 
-            .row {
-                height: 40px;
+            .badge {
+                width: 50px;
             }
 
             .score, .name {
                 font-size: 20px;
-                padding-top: 0px;
+                padding: 10px;
+            }
+
+            .score {
+                padding: 13px;
             }
         }
     </style>
@@ -154,22 +153,62 @@
 
     <div id="container">
         {% load staticfiles %}
+
         <div class="row">
-            <div class="name">Username</div>
-            <div class="score">Score</div>
+            <div class="name">
+                <text style="color: #F2C94C">#1</text>
+                <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
+                <text id="top1" style="color: #F2C94C">{{ top_five.0.1 }}</text>
+            </div>
+            <div class="score" id="score1" style="color: #F2C94C">Score</div>
         </div>
 
-        {% for datum in top_five %}
-            {% if forloop.counter < 6 %}
-                <div class="row">
-                    <div class="name">{{ datum.1 }}</div>
-                    <div class="score">{{ datum.0 }}</div>
-                </div>
-            {% endif %}
-        {% endfor %}
+        <div class="row">
+            <div class="name">
+                <text style="color: #F2F2F2">#2</text>
+                <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
+                <text id="top2" style="color: #F2F2F2">name</text>
+            </div>
+            <div class="score" id="score2" style="color: #F2F2F2">Score</div>
+        </div>
+
+        <div class="row">
+            <div class="name">
+                <text style="color: #EBA076">#3</text>
+                <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
+                <text id="top3" style="color: #EBA076">name</text>
+            </div>
+            <div class="score" id="score3" style="color: #EBA076">Score</div>
+        </div>
+
+        <div class="row">
+            <div class="name">
+                <text style="color: #6BB4DD">#4</text>
+                <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
+                <text id="top4" style="color: #6BB4DD">name</text>
+            </div>
+            <div class="score" id="score4" style="color: #6BB4DD">Score</div>
+        </div>
+
+        <div class="row">
+            <div class="name">
+                <text style="color: #6FCF97">#5</text>
+                <img class="badge" id="badge1" src="{% static 'myapp/eaglebadge2.png' %}">
+                <text id="top5" style="color: #6FCF97">name</text>
+            </div>
+            <div class="score" id="score5" style="color: #6FCF97">Score</div>
+        </div>
+
+        {#            {% for datum in top_five %}#}
+        {#                {% if forloop.counter < 6 %}#}
+        {#                    <div class="row">#}
+        {#                        <text class="name">{{ datum.1 }}</text>#}
+        {#                        <text class="score">{{ datum.0 }}</text>#}
+        {#                    </div>#}
+        {#                {% endif %}#}
+        {#            {% endfor %}#}
     </div>
 </div>
-
 
 
 </body>
