@@ -16,14 +16,14 @@
             font-family: "verdana";
         }
 
-        .header1{
+        .header1 {
             font-size: 70px;
         }
 
         p {
             font-family: "verdana";
             color: #565656;
-            text-align: left;
+            text-align: center;
             font-size: 16px;
             margin: 10px 100px;
         }
@@ -63,19 +63,16 @@
             margin-left: auto;
             margin-right: auto;
             width: 80%;
-            padding: 1px;
-            border: 1px solid #021a40;
-            background-color: red;
-        }
-
-        .index {
-            height: 60px;
-            padding-right: 20px;
         }
 
         .paragraph {
             margin: 40px;
             display: flex;
+        }
+
+        .index {
+            height: 70px;
+            padding-right: 30px;
         }
 
         .rules text {
@@ -85,16 +82,45 @@
         }
 
         .rules h2 {
-            font-size: 20px;
+            font-size: 3em;
             color: #565656;
             font-family: "verdana";
-            padding-left: 40px;
+            text-align: center;
             padding-top: 40px;
         }
 
-        #logo {
-            width: 50%;
-            margin-left: 25%;
+        #logo, #logo2 {
+            width: 90%;
+            margin-left: 5%;
+        }
+
+        .collapsible {
+            background-color: #225caa;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 3em;
+        }
+
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        .active, .collapsible:hover {
+            background-color: #ccc;
+        }
+
+        /* Style the collapsible content. Note: hidden by default */
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+
+        .legal {
+            padding-top: 100px;
         }
 
         @media (min-width: 1000px) {
@@ -103,9 +129,23 @@
             .header {
                 font-size: 1.5em;
             }
-            #logo {
-            width: 30%;
-            margin-left: 35%;
+
+            .legal {
+                padding-top: 30px;
+                padding-bottom: 30px;
+            }
+
+            .collapsible {
+            background-color: #225caa;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1em;
+            }
+
+            #logo, #logo2 {
+                width: 40%;
+                margin-left: 30%;
             }
 
             body {
@@ -119,6 +159,7 @@
 
             .index {
                 height: 25px;
+                padding-right: 10px;
             }
 
             .block {
@@ -129,20 +170,24 @@
             }
 
             .rules text {
-                font-size: 18px;
+                font-size: 15px;
+            }
+
+            p {
+                font-size: 12px;
             }
 
             .paragraph {
-                margin: 30px 90px;
+                margin: 30px 150px;
             }
 
             .rules h2 {
+                padding-top: 0px;
                 font-size: 20px;
-                padding-left: 90px;
             }
 
             #demo {
-                margin-top: 40px;
+                margin-top: 0px;
             }
 
             .button {
@@ -155,45 +200,49 @@
         }
     </style>
     <title>Google or Not?</title>
-	
+
     <meta property="og:url" content="https://shielded-tundra-32718.herokuapp.com"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="Google or Not?"/>
     <meta property="og:description" content="Can you tell the difference?"/>
     <meta property="og:image" content="https://shielded-tundra-32718.herokuapp.com/static/myapp/image3.png"/>
-	<meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:type" content="image/png"/>
 
-	
+
 </head>
 <body>
 
 <div class="block">
     {% load staticfiles %}
-{#    <h1 class="header header1">Google or Not?</h1>#}
-    <img id="logo" src="{% static 'myapp/simple_logo.jpg' %}" alt="1">
+    {#    <h1 class="header header1">Google or Not?</h1>#}
+    <img id="logo" src="{% static 'myapp/google_or_not.png' %}" alt="1">
     <p></p>
-    <h1 class="header">Test How Well You Know Google!</h1>
+    <img id="logo2" src="{% static 'myapp/uw_lab.png' %}" alt="1">
     <div class="rules">
         <h2>How to Play:</h2>
         <div class="paragraph">
-        <img class="index" src="{% static 'myapp/1.png' %}" alt="1">
-        <text>You will be shown <span style="color: blue; ">two sets of results</span> for each search term. You will
-            have <span style="color: blue; ">30 seconds</span> to guess which side is
-            from Google. </text>
+            <img class="index" src="{% static 'myapp/1.png' %}" alt="1">
+            <text><span style="color: #2F80ED; font-weight: bold">Guess which is from Google!</span><br>
+                You will be shown <span style="color: #2F80ED; ">two sets</span> of results for each search term. You
+                will
+                have <span style="color: #2F80ED; ">30 seconds</span>.
+            </text>
         </div>
         <div class="paragraph">
-        <img class="index" src="{% static 'myapp/2.png' %}" alt="2">
-        <text>If you get it <span style="color: green; ">right</span>, you will earn <span style="color: green; ">10 points</span>.
-            For being <span style="color: red; ">wrong</span>, you lose <span style="color: red; ">5 points</span></text>
+            <img class="index" src="{% static 'myapp/2.png' %}" alt="2">
+            <text>If you get it <span style="color: #27AE60; ">right</span>, you will earn <span
+                    style="color: #27AE60; ">10 points</span>.
+                For being <span style="color: #EB5757; ">wrong</span>, you lose <span
+                        style="color: #EB5757; ">5 points</span></text>
         </div>
         <div class="paragraph">
-        <img class="index" src="{% static 'myapp/3.png' %}" alt="3">
-        <text>If you make <span style="color: orange; ">no selection</span> after 30 seconds, you will earn <span
-                style="color: orange; ">0 points</span></text>
+            <img class="index" src="{% static 'myapp/3.png' %}" alt="3">
+            <text>If you make <span style="color: #F2994A; ">no selection</span> after 30 seconds, you will earn <span
+                    style="color: #F2994A; ">0 points</span></text>
         </div>
         <div class="paragraph">
-        <img class="index" src="{% static 'myapp/4.png' %}" alt="4">
-        <text>There will be <span style="color: blue; ">20 rounds</span>. Good luck!</text>
+            <img class="index" src="{% static 'myapp/4.png' %}" alt="4">
+            <text>There will be <span style="color: #2F80ED; ">20 rounds</span>. Good luck!</text>
         </div>
     </div>
 
@@ -205,15 +254,22 @@
     </picture>
 
     <h3></h3>
-    <div class="rules">
-        <h2>The Legal Stuff:</h2>
-        <p>This game has been explained to me. I have had a chance to ask questions. If I have questions later about
-            this
-            game, or if I have been harmed by participating in it, I can contact Dr. Chirag Shah (chirags@uw.edu). If I
-            have
-            questions about my rights as a participant, I can call the Human Subjects Division at (206) 543-0098 or call
-            collect at (206) 221-5940.
-        </p>
+    <div class="legal">
+        {#        <h2>The Legal Stuff:</h2>#}
+        {#        <p>This game has been explained to me. I have had a chance to ask questions. If I have questions later about#}
+        {#            this#}
+        {#            game, or if I have been harmed by participating in it, I can contact Dr. Chirag Shah (chirags@uw.edu). If I#}
+        {#            have#}
+        {#            questions about my rights as a participant, I can call the Human Subjects Division at (206) 543-0098 or call#}
+        {#            collect at (206) 221-5940.#}
+        {#        </p>#}
+        <button type="button" class="collapsible">The Legal Stuff (Click to see)</button>
+        <div class="content">
+            <p>This game has been explained to me. I have had a chance to ask questions. If I have questions later about
+                this game, or if I have been harmed by participating in it, I can contact Dr. Chirag Shah (chirags@uw.edu). If I
+                have questions about my rights as a participant, I can call the Human Subjects Division at (206) 543-0098 or call
+                collect at (206) 221-5940.</p>
+        </div>
     </div>
     <div style="text-align: center">
         <form action="../redir1/{{ respondent_id }}/" id="to_home">
@@ -223,4 +279,21 @@
     </form>
 </div>
 </body>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>
 </html>
