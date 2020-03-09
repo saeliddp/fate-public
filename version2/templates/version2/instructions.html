@@ -71,7 +71,7 @@
         }
 
         .index {
-            height: 70px;
+            height: 65px;
             padding-right: 30px;
         }
 
@@ -79,6 +79,7 @@
             font-size: 2em;
             font-family: "verdana";
             color: #565656;
+            width: 100%;
         }
 
         .rules h2 {
@@ -95,8 +96,8 @@
         }
 
         .collapsible {
-            background-color: #225caa;
-            color: white;
+            background-color: #f2f2f2;
+            color: #4F4F4F;
             cursor: pointer;
             padding: 18px;
             width: 100%;
@@ -106,10 +107,6 @@
             font-size: 3em;
         }
 
-        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-        .active, .collapsible:hover {
-            background-color: #ccc;
-        }
 
         /* Style the collapsible content. Note: hidden by default */
         .content {
@@ -123,11 +120,28 @@
             padding-top: 50px;
         }
 
+        #polygon {
+            height: .5em;
+            padding-left: 10px;
+        }
+
+        .badges {
+            justify-content: center;
+        }
+
+        .badge {
+            width: 15%;
+        }
+
         @media (min-width: 1000px) {
         {% load staticfiles %}
 
             .header {
                 font-size: 1.5em;
+            }
+
+            .badge {
+                width: 10%;
             }
 
             .legal {
@@ -136,11 +150,9 @@
             }
 
             .collapsible {
-            background-color: #225caa;
-            color: white;
-            cursor: pointer;
-            padding: 5px;
-            font-size: 1em;
+                cursor: pointer;
+                padding: 5px;
+                font-size: 1em;
             }
 
             #logo, #logo2 {
@@ -163,7 +175,7 @@
             }
 
             .block {
-                background: white;
+                background: #f2f2f2;
                 margin: 80px 220px;
                 border-radius: 10px;
                 border: 2px solid #cbcbcb;
@@ -230,28 +242,32 @@
         </div>
         <div class="paragraph">
             <img class="index" src="{% static 'myapp/2.png' %}" alt="2">
-            <text>If you get it <span style="color: #27AE60; ">right</span>, you will earn <span
-                    style="color: #27AE60; ">10 points</span>.
-                For being <span style="color: #EB5757; ">wrong</span>, you lose <span
-                        style="color: #EB5757; ">5 points</span></text>
+            <text>For being <span style="color: #27AE60; ">right, +10 points.</span><br>
+                For being <span style="color: #EB5757; ">wrong, -5 points.</span><br>
+                <span style="color: #F2994A; ">No answer, 0 point.</span>
         </div>
         <div class="paragraph">
             <img class="index" src="{% static 'myapp/3.png' %}" alt="3">
-            <text>If you make <span style="color: #F2994A; ">no selection</span> after 30 seconds, you will earn <span
-                    style="color: #F2994A; ">0 points</span></text>
+            <text>There will be <span style="color: #2F80ED; ">20 rounds</span>.
+                You will get a <span style="color: #2F80ED; ">badge</span> after finished the game.<br>
+                <span style="color: #2F80ED; ">Good luck!</span></text>
+            <br>
         </div>
-        <div class="paragraph">
-            <img class="index" src="{% static 'myapp/4.png' %}" alt="4">
-            <text>There will be <span style="color: #2F80ED; ">20 rounds</span>. Good luck!</text>
+        <div class="paragraph badges">
+            <img class="badge" src="{% static 'myapp/eaglebadge1.png' %}">
+            <img class="badge" src="{% static 'myapp/owlbadge1.png' %}">
+            <img class="badge" src="{% static 'myapp/goatbadge1.png' %}">
+            <img class="badge" src="{% static 'myapp/batbadge1.png' %}">
+            <img class="badge" src="{% static 'myapp/molebadge1.png' %}">
         </div>
     </div>
 
     {#<img id="demo" src="{% static 'myapp/demo_phone.png' %}" alt="demo">#}
-{#    <picture>#}
-{#        <source media="(min-width: 1000px)" srcset="{% static 'myapp/demo2.jpg' %}">#}
-{#        <source media="(min-width: 480px)" srcset="{% static 'myapp/demo_phone.png' %}">#}
-{#        <img id="demo" src="OtherImage.png" alt="IfItDoesntMatchAnyMedia">#}
-{#    </picture>#}
+    {#    <picture>#}
+    {#        <source media="(min-width: 1000px)" srcset="{% static 'myapp/demo2.jpg' %}">#}
+    {#        <source media="(min-width: 480px)" srcset="{% static 'myapp/demo_phone.png' %}">#}
+    {#        <img id="demo" src="OtherImage.png" alt="IfItDoesntMatchAnyMedia">#}
+    {#    </picture>#}
 
     <h3></h3>
     <div class="legal">
@@ -263,11 +279,15 @@
         {#            questions about my rights as a participant, I can call the Human Subjects Division at (206) 543-0098 or call#}
         {#            collect at (206) 221-5940.#}
         {#        </p>#}
-        <button type="button" class="collapsible">The Legal Stuff (Click to see)</button>
+        <button type="button" class="collapsible"><u>The Legal Stuff</u><img id="polygon"
+                                                                             src="{% static 'myapp/Polygon.png' %}">
+        </button>
         <div class="content">
             <p>This game has been explained to me. I have had a chance to ask questions. If I have questions later about
-                this game, or if I have been harmed by participating in it, I can contact Dr. Chirag Shah (chirags@uw.edu). If I
-                have questions about my rights as a participant, I can call the Human Subjects Division at (206) 543-0098 or call
+                this game, or if I have been harmed by participating in it, I can contact Dr. Chirag Shah
+                (chirags@uw.edu). If I
+                have questions about my rights as a participant, I can call the Human Subjects Division at (206)
+                543-0098 or call
                 collect at (206) 221-5940.</p>
         </div>
     </div>
