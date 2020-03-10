@@ -47,10 +47,16 @@
             text-decoration: none;
             display: inline-block;
             font-size: 60px;
-            margin-top: 80px;
-            margin-bottom: 100px;
+            {#margin-top: 80px;#}
+            {#margin-bottom: 100px;#}
             cursor: pointer;
             border-radius: 15px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            position: fixed;
+            bottom: 40px;
+            left: 22%;
         }
 
         .button:hover {
@@ -117,7 +123,8 @@
         }
 
         .legal {
-            padding-top: 50px;
+            padding-top: 40px;
+            padding-bottom: 250px;
         }
 
         #polygon {
@@ -133,6 +140,7 @@
             width: 15%;
             height: 15%;
         }
+
 
         @media (min-width: 1000px) {
         {% load staticfiles %}
@@ -209,6 +217,9 @@
                 border-radius: 5px;
                 margin-top: 20px;
                 margin-bottom: 40px;
+                position: initial;
+                bottom: auto;
+                left: auto;
             }
         }
     </style>
@@ -292,7 +303,7 @@
                 collect at (206) 221-5940.</p>
         </div>
     </div>
-    <div style="text-align: center">
+    <div class="agree" style="text-align: center; ">
         <form action="../redir1/{{ respondent_id }}/" id="to_home">
             <input type="submit" value="Agree and Play!" class="button">
         </form>
