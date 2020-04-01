@@ -10,11 +10,11 @@ def toCSV(data):
     return out
 
 def printResponses(start_ind=0, end_ind=len(responses)-1):
-    print("mturk_id,chosen,unchosen,query,time_elapsed")
+    print("user_id,chosen,unchosen,query,time_elapsed,date")
     for r in responses:
-        print(toCSV([r.respondent.mturk_id, r.chosen_alg.name, r.unchosen_alg.name, r.query.query_name, r.time_elapsed]))
+        print(toCSV([r.respondent.id, r.chosen_alg.name, r.unchosen_alg.name, r.query.query_name, r.time_elapsed, r.date]))
         
 def printUsers(start_ind=0, end_ind=len(users)-1):
-    print("mturk_id,age,gender,education,ip_addr,browser")
+    print("user_id,ip_addr,browser,score,current_question,date")
     for u in users:
-        print(toCSV([u.mturk_id, u.age, u.gender, u.education, u.ip_addr, u.browser]))
+        print(toCSV([u.id, u.ip_addr, u.browser, u.score, u.curr_q, u.date]))
