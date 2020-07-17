@@ -64,11 +64,12 @@ def instructions(request):
     }
     return render(request, 'version2/instructions.html', context)
 
+#### BE CAREFUL WITH THIS METHOD
 def getAlgs(id):
-    if id < 49 and not swap[id-1]:
+    if id >= 49 and not swap[id-1]:
         left_alg = round_one_l
         right_alg = round_one_r
-    elif id < 49:
+    elif id >= 49:
         left_alg = round_one_r
         right_alg = round_one_l
     elif not swap[id-1]:
