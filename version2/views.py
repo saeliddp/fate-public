@@ -258,9 +258,10 @@ def exportUsers(request):
 def exportResponses(request):
     response = HttpResponse(content_type="text/csv")
     writer = csv.writer(response)
-    writer.writerow(['user_id','chosen','unchosen','query','time_elapsed','date'])
+    writer.writerow(['user_id','chosen','unchosen','query','query_id','time_elapsed','date'])
     for r in Response.objects.all():
-        writer.writerow([r.respondent.id, r.chosen_alg.name, r.unchosen_alg.name, r.query.query_name, r.time_elapsed, r.date])
+        if (r.query.query_id >= 49 and r.chosen_alg.name not in ["0g", "03gfp"]) or (r.query.query_id < 49 and r.chosen_alg.name not in ["05gfp", "09gfp"]):
+            writer.writerow([r.respondent.id, r.chosen_alg.name, r.unchosen_alg.name, r.query.query_name, r.query.query_id, r.time_elapsed, r.date])
     today = datetime.date.today()
     filename = "responses_" + today.strftime("%m_%d_%Y") + ".csv"
     response['Content-Disposition'] = 'attachment; filename="' + filename + '"'
